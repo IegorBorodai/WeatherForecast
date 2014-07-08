@@ -1,5 +1,5 @@
 //
-//  WFAppDelegate.h
+//  WFLeftSideCityListViewController.h
 //  WeatherForecast
 //
 //  Created by Iegor Borodai on 7/8/14.
@@ -8,8 +8,6 @@
 
 @import UIKit;
 
-@interface WFAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface WFLeftSideCityListViewController : UIViewController
 
 @end

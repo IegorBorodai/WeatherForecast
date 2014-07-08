@@ -20,7 +20,6 @@
 		E557A502196C860500537F37 /* ActivityRecordObjectiveC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E557A4DB196C860500537F37 /* ActivityRecordObjectiveC.xcdatamodeld */; };
 		E557A503196C860500537F37 /* Geo.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4DE196C860500537F37 /* Geo.m */; };
 		E557A504196C860500537F37 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4E0196C860500537F37 /* User.m */; };
-		E557A505196C860500537F37 /* WFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4E5196C860500537F37 /* WFViewController.m */; };
 		E557A506196C860500537F37 /* NCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EA196C860500537F37 /* NCNetworkManager.m */; };
 		E557A507196C860500537F37 /* NCNetworkRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EC196C860500537F37 /* NCNetworkRequestSerializer.m */; };
 		E557A508196C860500537F37 /* NCNetworkResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EE196C860500537F37 /* NCNetworkResponseSerializer.m */; };
@@ -31,6 +30,11 @@
 		E557A50D196C860500537F37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4F8196C860500537F37 /* main.m */; };
 		E557A50F196C860500537F37 /* WFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4FC196C860500537F37 /* WFAppDelegate.m */; };
 		E557A510196C860500537F37 /* PHClassTypeConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4FF196C860500537F37 /* PHClassTypeConvertor.m */; };
+		E557A554196C8B4900537F37 /* WFLeftSideCityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A553196C8B4900537F37 /* WFLeftSideCityListViewController.m */; };
+		E557A557196C8B7400537F37 /* WFCityWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A556196C8B7400537F37 /* WFCityWeatherViewController.m */; };
+		E557A55A196C8B8100537F37 /* WFRightSideCityLookupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A559196C8B8100537F37 /* WFRightSideCityLookupViewController.m */; };
+		E5CC168C196C97F400CC06C6 /* WFAppearenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CC168B196C97F400CC06C6 /* WFAppearenceManager.m */; };
+		E5CC1690196C999E00CC06C6 /* WFPageDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CC168F196C999E00CC06C6 /* WFPageDataSourceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +66,6 @@
 		E557A4DE196C860500537F37 /* Geo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geo.m; sourceTree = "<group>"; };
 		E557A4DF196C860500537F37 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		E557A4E0196C860500537F37 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		E557A4E4196C860500537F37 /* WFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFViewController.h; sourceTree = "<group>"; };
-		E557A4E5196C860500537F37 /* WFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFViewController.m; sourceTree = "<group>"; };
 		E557A4E9196C860500537F37 /* NCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetworkManager.h; sourceTree = "<group>"; };
 		E557A4EA196C860500537F37 /* NCNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNetworkManager.m; sourceTree = "<group>"; };
 		E557A4EB196C860500537F37 /* NCNetworkRequestSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetworkRequestSerializer.h; sourceTree = "<group>"; };
@@ -82,6 +84,16 @@
 		E557A4FC196C860500537F37 /* WFAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAppDelegate.m; sourceTree = "<group>"; };
 		E557A4FE196C860500537F37 /* PHClassTypeConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHClassTypeConvertor.h; sourceTree = "<group>"; };
 		E557A4FF196C860500537F37 /* PHClassTypeConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHClassTypeConvertor.m; sourceTree = "<group>"; };
+		E557A552196C8B4900537F37 /* WFLeftSideCityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFLeftSideCityListViewController.h; sourceTree = "<group>"; };
+		E557A553196C8B4900537F37 /* WFLeftSideCityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFLeftSideCityListViewController.m; sourceTree = "<group>"; };
+		E557A555196C8B7400537F37 /* WFCityWeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCityWeatherViewController.h; sourceTree = "<group>"; };
+		E557A556196C8B7400537F37 /* WFCityWeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCityWeatherViewController.m; sourceTree = "<group>"; };
+		E557A558196C8B8100537F37 /* WFRightSideCityLookupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFRightSideCityLookupViewController.h; sourceTree = "<group>"; };
+		E557A559196C8B8100537F37 /* WFRightSideCityLookupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFRightSideCityLookupViewController.m; sourceTree = "<group>"; };
+		E5CC168A196C97F400CC06C6 /* WFAppearenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAppearenceManager.h; sourceTree = "<group>"; };
+		E5CC168B196C97F400CC06C6 /* WFAppearenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAppearenceManager.m; sourceTree = "<group>"; };
+		E5CC168E196C999E00CC06C6 /* WFPageDataSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFPageDataSourceViewController.h; sourceTree = "<group>"; };
+		E5CC168F196C999E00CC06C6 /* WFPageDataSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFPageDataSourceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,8 +227,14 @@
 		E557A4E3196C860500537F37 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E557A4E4196C860500537F37 /* WFViewController.h */,
-				E557A4E5196C860500537F37 /* WFViewController.m */,
+				E557A552196C8B4900537F37 /* WFLeftSideCityListViewController.h */,
+				E557A553196C8B4900537F37 /* WFLeftSideCityListViewController.m */,
+				E557A555196C8B7400537F37 /* WFCityWeatherViewController.h */,
+				E557A556196C8B7400537F37 /* WFCityWeatherViewController.m */,
+				E557A558196C8B8100537F37 /* WFRightSideCityLookupViewController.h */,
+				E557A559196C8B8100537F37 /* WFRightSideCityLookupViewController.m */,
+				E5CC168E196C999E00CC06C6 /* WFPageDataSourceViewController.h */,
+				E5CC168F196C999E00CC06C6 /* WFPageDataSourceViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -278,6 +296,8 @@
 			children = (
 				E557A4FE196C860500537F37 /* PHClassTypeConvertor.h */,
 				E557A4FF196C860500537F37 /* PHClassTypeConvertor.m */,
+				E5CC168A196C97F400CC06C6 /* WFAppearenceManager.h */,
+				E5CC168B196C97F400CC06C6 /* WFAppearenceManager.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -424,16 +444,20 @@
 			files = (
 				E557A50F196C860500537F37 /* WFAppDelegate.m in Sources */,
 				E557A50D196C860500537F37 /* main.m in Sources */,
-				E557A505196C860500537F37 /* WFViewController.m in Sources */,
 				E557A510196C860500537F37 /* PHClassTypeConvertor.m in Sources */,
 				E557A504196C860500537F37 /* User.m in Sources */,
+				E557A55A196C8B8100537F37 /* WFRightSideCityLookupViewController.m in Sources */,
+				E5CC168C196C97F400CC06C6 /* WFAppearenceManager.m in Sources */,
 				E557A509196C860500537F37 /* NCNetworkClient.m in Sources */,
 				E557A503196C860500537F37 /* Geo.m in Sources */,
 				E557A506196C860500537F37 /* NCNetworkManager.m in Sources */,
 				E557A508196C860500537F37 /* NCNetworkResponseSerializer.m in Sources */,
 				E557A501196C860500537F37 /* ACEphemeralObject.m in Sources */,
 				E557A507196C860500537F37 /* NCNetworkRequestSerializer.m in Sources */,
+				E557A554196C8B4900537F37 /* WFLeftSideCityListViewController.m in Sources */,
 				E557A502196C860500537F37 /* ActivityRecordObjectiveC.xcdatamodeld in Sources */,
+				E5CC1690196C999E00CC06C6 /* WFPageDataSourceViewController.m in Sources */,
+				E557A557196C8B7400537F37 /* WFCityWeatherViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

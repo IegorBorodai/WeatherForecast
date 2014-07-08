@@ -1,5 +1,5 @@
 //
-//  WFAppDelegate.h
+//  WFCityWeatherViewController.h
 //  WeatherForecast
 //
 //  Created by Iegor Borodai on 7/8/14.
@@ -8,8 +8,8 @@
 
 @import UIKit;
 
-@interface WFAppDelegate : UIResponder <UIApplicationDelegate>
+@interface WFCityWeatherViewController : UIViewController
 
-@property (strong, nonatomic) UIWindow *window;
+@property NSUInteger pageIndex;
 
 @end

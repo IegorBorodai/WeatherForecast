@@ -7,12 +7,15 @@
 //
 
 #import "WFAppDelegate.h"
+#import "WFAppearenceManager.h"
+#import "NCNetworkClient.h"
 
 @implementation WFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [WFAppearenceManager applyDefaultAppearance];
+    [NCNetworkClient createNetworkClientWithRootPath:@""];
     return YES;
 }
 							
