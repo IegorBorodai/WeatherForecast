@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E557A519196C878C00537F37"
+               BlueprintIdentifier = "E557A49E196C852200537F37"
                BuildableName = "WeatherForecast.app"
                BlueprintName = "WeatherForecast"
                ReferencedContainer = "container:WeatherForecast.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E557A53A196C878C00537F37"
+               BlueprintIdentifier = "E557A4BF196C852200537F37"
                BuildableName = "WeatherForecastTests.xctest"
                BlueprintName = "WeatherForecastTests"
                ReferencedContainer = "container:WeatherForecast.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E557A519196C878C00537F37"
+            BlueprintIdentifier = "E557A49E196C852200537F37"
             BuildableName = "WeatherForecast.app"
             BlueprintName = "WeatherForecast"
             ReferencedContainer = "container:WeatherForecast.xcodeproj">
@@ -61,7 +61,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E557A519196C878C00537F37"
+            BlueprintIdentifier = "E557A49E196C852200537F37"
             BuildableName = "WeatherForecast.app"
             BlueprintName = "WeatherForecast"
             ReferencedContainer = "container:WeatherForecast.xcodeproj">
@@ -79,7 +79,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E557A519196C878C00537F37"
+            BlueprintIdentifier = "E557A49E196C852200537F37"
             BuildableName = "WeatherForecast.app"
             BlueprintName = "WeatherForecast"
             ReferencedContainer = "container:WeatherForecast.xcodeproj">

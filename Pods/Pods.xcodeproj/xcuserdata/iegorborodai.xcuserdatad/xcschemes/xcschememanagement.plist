@@ -4,20 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>WeatherForecast.xcscheme</key>
+		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MagicalRecord.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>E557A49E196C852200537F37</key>
+		<key>0CA03DE514A841E280DB97DD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E557A4BF196C852200537F37</key>
+		<key>4F6AB80511D74FED815FCCAF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>62595020B8754A76BB79C236</key>
 		<dict>
 			<key>primary</key>
 			<true/>
