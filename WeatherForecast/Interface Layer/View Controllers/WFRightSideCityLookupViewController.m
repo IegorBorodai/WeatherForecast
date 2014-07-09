@@ -127,6 +127,19 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Button Actions
+
+- (IBAction)closeButtonDidRecieveTap:(id)sender {
+    if (NSNotFound == self.fromPageIndex) {
+        self.fromPageIndex = self.pageIndex - 1;
+    }
+    __weak typeof(self)weakSelf = self;
+    [self.pageViewController showViewControllerAtIndex:self.fromPageIndex fromIndex:self.pageIndex completion:^(BOOL finished) {
+        [weakSelf clearViewControllerData];
+    }];
+}
+
+
 #pragma mark - Text Field Delegate
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

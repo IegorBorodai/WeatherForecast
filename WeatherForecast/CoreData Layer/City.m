@@ -13,6 +13,7 @@
 @implementation City
 
 @dynamic isCurrentLocation;
+@dynamic isComplete;
 @dynamic name;
 @dynamic updatedOn;
 @dynamic weatherForecast;

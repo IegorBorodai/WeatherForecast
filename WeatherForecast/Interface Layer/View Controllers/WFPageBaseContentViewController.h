@@ -12,6 +12,7 @@
 @interface WFPageBaseContentViewController : UIViewController
 
 @property (nonatomic)               NSUInteger                      pageIndex;
+@property (nonatomic)               NSUInteger                      fromPageIndex;
 @property (nonatomic, weak)         WFPageDataSourceViewController  *pageViewController;
 
 @end

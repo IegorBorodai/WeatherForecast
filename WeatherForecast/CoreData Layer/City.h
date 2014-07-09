@@ -14,6 +14,7 @@
 @interface City : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * isCurrentLocation;
+@property (nonatomic, retain) NSNumber * isComplete;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSDate * updatedOn;
 @property (nonatomic, retain) NSOrderedSet *weatherForecast;

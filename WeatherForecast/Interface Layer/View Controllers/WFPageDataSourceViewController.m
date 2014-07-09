@@ -59,9 +59,22 @@
     UIPageViewControllerNavigationDirection direction = fromIndex > index ? UIPageViewControllerNavigationDirectionReverse : UIPageViewControllerNavigationDirectionForward;
     
     WFPageBaseContentViewController *newViewController = [self viewControllerAtIndex:index];
+    newViewController.fromPageIndex = fromIndex;
+    
     NSArray *viewControllers = @[newViewController];
     
-    [self.pageViewController setViewControllers:viewControllers direction:direction animated:YES completion:completion];
+    __weak UIPageViewController* weakPageVC = self.pageViewController;
+    [self.pageViewController setViewControllers:viewControllers
+                  direction:direction
+                   animated:YES completion:^(BOOL finished) {
+                       UIPageViewController* strongPageVC = weakPageVC;
+                       if (!strongPageVC) return;
+                       dispatch_async(dispatch_get_main_queue(), ^{
+                           [strongPageVC setViewControllers:viewControllers
+                                          direction:direction
+                                           animated:NO completion:nil];
+                       });
+                   }];
 }
 
 #pragma mark - Private methods
@@ -81,6 +94,7 @@
         viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WFCityWeatherViewController"];
     }
     viewController.pageIndex = index;
+    viewController.fromPageIndex = NSNotFound;
     viewController.pageViewController = self;
     return viewController;
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="City" representedClassName="City" syncable="YES">
+        <attribute name="isComplete" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="isCurrentLocation" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="updatedOn" attributeType="Date" defaultDateTimeInterval="426589200" syncable="YES"/>
@@ -22,7 +23,7 @@
         <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="weatherForecast" inverseEntity="City" syncable="YES"/>
     </entity>
     <elements>
-        <element name="City" positionX="-290" positionY="63" width="128" height="103"/>
+        <element name="City" positionX="-290" positionY="63" width="128" height="118"/>
         <element name="WeatherForecast" positionX="-63" positionY="-18" width="128" height="238"/>
     </elements>
 </model>

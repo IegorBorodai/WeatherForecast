@@ -16,5 +16,7 @@
     @import CoreData;
     #import <MagicalRecord/CoreData+MagicalRecord.h>
     #import <AFNetworking/AFNetworking.h>
+    #import <SWTableViewCell/NSMutableArray+SWUtilityButtons.h>
+    #import <SWTableViewCell/SWTableViewCell.h>
 #endif
 
