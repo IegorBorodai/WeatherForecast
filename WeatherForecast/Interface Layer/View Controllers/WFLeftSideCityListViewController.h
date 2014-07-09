@@ -7,7 +7,8 @@
 //
 
 @import UIKit;
+#import "WFPageBaseContentViewController.h"
 
-@interface WFLeftSideCityListViewController : UIViewController
+@interface WFLeftSideCityListViewController : WFPageBaseContentViewController
 
 @end

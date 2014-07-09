@@ -7,7 +7,8 @@
 //
 
 #import "NCNetworkClient.h"
-#import "User.h"
+#import "WeatherForecast.h"
+#import "PHGraphObject.h"
 
 static dispatch_once_t networkToken;
 static NCNetworkManager *sharedNetworkClient = nil;
@@ -24,7 +25,7 @@ static NCNetworkManager *sharedNetworkClient = nil;
 + (NCNetworkManager *)networkClient
 {
     dispatch_once(&networkToken, ^{
-        sharedNetworkClient = [[NCNetworkManager alloc] initWithBaseURL:nil];
+        sharedNetworkClient = [[NCNetworkManager alloc] initWithBaseURL:nil specialFields:nil];
     });
 	
     return sharedNetworkClient;
@@ -32,106 +33,87 @@ static NCNetworkManager *sharedNetworkClient = nil;
 
 #pragma mark - Lifecycle
 
-+ (void)createNetworkClientWithRootPath:(NSString*)baseURL
++ (void)createNetworkClientWithRootPath:(NSString*)baseURL specialFields:(NSDictionary *)specialFields
 {
     dispatch_once(&networkToken, ^{
-        sharedNetworkClient = [[NCNetworkManager alloc] initWithBaseURL:[NSURL URLWithString:baseURL]];
+        sharedNetworkClient = [[NCNetworkManager alloc] initWithBaseURL:[NSURL URLWithString:baseURL] specialFields:specialFields];
     });
 }
 
-+ (NSURLSessionTask*)getGenderInfoWithSuccessBlock:(void (^)(NSDictionary *genderAttributes))success
-                                             failure:(void (^)(NSError *error, BOOL isCanceled))failure
+
+#pragma mark - Requests
+
++ (NSURLSessionTask *)getCityNamesForQuery:(NSString *)query successBlock:(void (^)(NSArray *cityList))success
+                                   failure:(void (^)(NSError *error, BOOL isCanceled))failure
 {
-    NSURLSessionTask* task = [[NCNetworkClient networkClient] enqueueTaskWithMethod:@"GET" path:@"/info" parameters:@{@"get":@"gender"} customHeaders:nil success:^(id responseObject) {
+    NSURLSessionTask *task = [[NCNetworkClient networkClient] enqueueTaskWithMethod:@"GET" path:@"/search.ashx" parameters:@{@"q":query} customHeaders:nil success:^(id responseObject) {
         if (success) {
-            NSDictionary* genderAttributes = nil;
-            if (responseObject[@"gender"]) {
-                if ([responseObject[@"gender"] isKindOfClass:[NSDictionary class]]) {
-                    genderAttributes = [responseObject[@"gender"] copy];
-                } else if (([responseObject[@"gender"] isKindOfClass:[NSArray class]]) &&
-                           (((NSArray *)responseObject[@"gender"]).count == 2)) {
-                    NSMutableDictionary *genderMut = [NSMutableDictionary new];
-                    
-                    genderMut[@"female"] = [(NSArray *)responseObject[@"gender"] firstObject];
-                    genderMut[@"male"] = [(NSArray *)responseObject[@"gender"] lastObject];
-                    genderAttributes = genderMut;
-                } else if ([responseObject[@"gender"] isKindOfClass:[NSString class]]) {
-                    NSMutableDictionary *genderMut = [NSMutableDictionary new];
-                    genderMut[@"male"] = responseObject[@"gender"];
-                    genderAttributes = genderMut;
+            NSMutableArray *cityList = [@[] mutableCopy];
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if (responseObject[@"search_api"] && [responseObject[@"search_api"] isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *searchApi = responseObject[@"search_api"];
+                    if (searchApi[@"result"] && [searchApi[@"result"] isKindOfClass:[NSArray class]]) {
+                        NSArray *result = searchApi[@"result"];
+                        for (NSDictionary *obj in result) {
+                            if ([obj isKindOfClass:[NSDictionary class]]) {
+                                if (obj[@"areaName"] && [obj[@"areaName"] isKindOfClass:[NSArray class]]) {
+                                    NSArray *areaName = obj[@"areaName"];
+                                    NSDictionary* subObj = [areaName firstObject];
+                                    if (subObj && [subObj isKindOfClass:[NSDictionary class]]) {
+                                        if (subObj[@"value"] && [subObj[@"value"] isKindOfClass:[NSString class]]) {
+                                            [cityList addObject:subObj[@"value"]];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            if (genderAttributes) {
-            success(genderAttributes);
-            } else {
-            }
+            success(cityList);
         }
     } failure:failure];
+    
     return task;
 }
 
-
-+ (NSURLSessionTask*)getGrapUserWithSuccessBlock:(void (^)(NSDictionary *genderAttributes))success
-                                         failure:(void (^)(NSError *error, BOOL isCanceled))failure
++ (NSURLSessionTask*)getWeatherForecastForQuery:(NSString*)query successBlock:(void (^)(NSArray<WFWeatherForecastProtocol> *weatherForecast))success
+                                        failure:(void (^)(NSError *error, BOOL isCanceled))failure
 {
-
-    NSDictionary* graphParameters = @{
-                                      @"birthday":@"",
-                                      @"age":@"",
-                                      @"geo":@{
-                                              @"country":@"",
-                                              @"city":@"",
-                                              },
-                                      @"chat_up_line":@"",
-                                      @"children":@"",
-                                      };
-    
-
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:graphParameters
-                                                       options:0
-                                                         error:nil];
-    
-    NSDictionary *parameters = @{@"args":[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]};
-    
-    NSURLSessionTask *task = [[NCNetworkClient networkClient] enqueueTaskWithMethod:@"GET" path:@"/data/fetch" parameters:parameters customHeaders:nil success:^(id jsonResponse) {
+    NSURLSessionTask *task = [[NCNetworkClient networkClient] enqueueTaskWithMethod:@"GET" path:@"/search.ashx" parameters:@{@"q":query} customHeaders:nil success:^(id responseObject) {
         if (success) {
-            User* user = nil;
-            user = [[User findAll] lastObject];
-            if (!user) {
-                user = [[User alloc] initWithJsonDictionary:jsonResponse];
-                NSLog(@"%@", user.birthday);
-                user.birthday = @"Other date";
-                NSLog(@"%@", user.birthday);
-            
-                [user saveWithCompletionBlock:nil];
+            NSMutableArray *weatherForecast = [@[] mutableCopy];
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if (responseObject[@"data"] && [responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *data = responseObject[@"data"];
+                    if (data[@"current_condition"] && [data[@"current_condition"] isKindOfClass:[NSArray class]]) {
+                        NSDictionary *currentCondition = [data[@"current_condition"] firstObject];
+                        if (currentCondition && [currentCondition isKindOfClass:[NSDictionary class]]) {
+                            [weatherForecast addObject:currentCondition];
+                        }
+                    }
+                    
+                    if (data[@"weather"] && [data[@"weather"] isKindOfClass:[NSArray class]]) {
+                        NSArray *weatherList = data[@"weather"];
+                        for (NSDictionary* weather in weatherList) {
+                            if (weather && [weather isKindOfClass:[NSDictionary class]]) {
+                                [weatherForecast addObject:weather];
+                            }
+                        }
+                    }
+                }
             }
-            NSLog(@"%@", user.geo.city);
+            NSError* error = nil;
+            NSArray<WFWeatherForecastProtocol> *protocolArray = ((NSArray<WFWeatherForecastProtocol>*)[PHGraphObject graphObjectWrappingArray:responseObject withProtocolConversion:@protocol(WFWeatherForecastProtocol) subProtocols:@[@protocol(WFWeatherForecastDescriptionProtocol)] error:&error]);
+            if (error) {
+                NSLog(@"Protocol mapping error = %@",error.localizedDescription);
+            }
+            success(protocolArray);
         }
     } failure:failure];
     
     return task;
 }
-
-
-+ (NSURLSessionTask*)downloadImageFromPath:(NSString*)path success:(void (^)(UIImage* image))success
-                                   failure:(void (^)(NSError *error, BOOL isCanceled))failure
-                                  progress:(NSProgress*)progress
-{
-    NSURLSessionTask* downloadTask = [[NCNetworkClient networkClient] downloadImageFromPath:path success:success failure:failure];
-    return downloadTask;
-}
-
-+ (NSURLSessionDownloadTask*)downloadFileFromPath:(NSString*)path
-                                       toFilePath:(NSString*)filePath
-                                          success:(SuccessFileURLBlock)successBlock
-                                          failure:(FailureBlock)failureBlock
-                                         progress:(NSProgress* __autoreleasing *)progress
-{
-    NSURLSessionDownloadTask* downloadTask = [[NCNetworkClient networkClient] downloadFileFromPath:path toFilePath:filePath success:successBlock failure:failureBlock progress:progress];
-    return downloadTask;
-}
-
 
 @end
 

@@ -8,6 +8,7 @@
 
 
 #import "NCNetworkManager.h"
+#import "WFWeatherForecastProtocol.h"
 
 @interface NCNetworkClient : NSObject
 
@@ -15,7 +16,7 @@
 - (id)new __AVAILABILITY_INTERNAL_UNAVAILABLE;
 
 // Public
-+ (void)createNetworkClientWithRootPath:(NSString*)baseURL;
++ (void)createNetworkClientWithRootPath:(NSString*)baseURL specialFields:(NSDictionary *)specialFields;
 
 // Singletons
 + (NCNetworkManager *)networkClient;
@@ -24,21 +25,12 @@
 - (BOOL)checkReachabilityStatusWithError:(NSError* __autoreleasing*)error;
 
 //Requests
-+ (NSURLSessionTask*)getGenderInfoWithSuccessBlock:(void (^)(NSDictionary *genderAttributes))success
-                                           failure:(void (^)(NSError *error, BOOL isCanceled))failure;
 
-+ (NSURLSessionTask*)getGrapUserWithSuccessBlock:(void (^)(NSDictionary *genderAttributes))success
-                                           failure:(void (^)(NSError *error, BOOL isCanceled))failure;
++ (NSURLSessionTask*)getCityNamesForQuery:(NSString*)query successBlock:(void (^)(NSArray *cityList))success
+                                  failure:(void (^)(NSError *error, BOOL isCanceled))failure;
 
-+ (NSURLSessionTask*)downloadImageFromPath:(NSString*)path
-                                   success:(void (^)(UIImage* image))success
-                                   failure:(void (^)(NSError *error, BOOL isCanceled))failure
-                                  progress:(NSProgress*)progress;
++ (NSURLSessionTask*)getWeatherForecastForQuery:(NSString*)query successBlock:(void (^)(NSArray<WFWeatherForecastProtocol> *weatherForecast))success
+                                  failure:(void (^)(NSError *error, BOOL isCanceled))failure;
 
-+ (NSURLSessionDownloadTask*)downloadFileFromPath:(NSString*)path
-                                       toFilePath:(NSString*)filePath
-                                          success:(SuccessFileURLBlock)successBlock
-                                          failure:(FailureBlock)failureBlock
-                                         progress:(NSProgress* __autoreleasing *)progress;
 
 @end

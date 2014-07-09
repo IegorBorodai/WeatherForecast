@@ -7,18 +7,27 @@
 //
 
 #import "WFCityWeatherViewController.h"
+#import "WFGlobalDataManager.h"
 
 @interface WFCityWeatherViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *weatherDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nightTemperatureLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+
+@property (strong, nonatomic)        City                       *city;
+@property (strong, nonatomic)        NSURLSessionTask           *weatherForecastTask;
 
 @end
 
 @implementation WFCityWeatherViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -26,7 +35,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.city = [WFGlobalDataManager sharedManager].cityList[self.pageIndex - 1];
+    if (!self.city.weatherForecast || ([[NSDate date] compare: self.city.updatedOn] == NSOrderedDescending)) {
+        
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -23,4 +23,6 @@
 
 + (NSArray *)findAll;
 
++ (NSManagedObject*)convertInMemoryObjectToManaged:(NSDictionary*)dict class:(Class)class;
+
 @end

@@ -7,9 +7,8 @@
 //
 
 @import UIKit;
+#import "WFPageBaseContentViewController.h"
 
-@interface WFCityWeatherViewController : UIViewController
-
-@property NSUInteger pageIndex;
+@interface WFCityWeatherViewController : WFPageBaseContentViewController
 
 @end

@@ -10,6 +10,7 @@
 
 #import "NCNetworkRequestSerializer.h"
 #import "NCNetworkResponseSerializer.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 #define MAX_CONCURENT_REQUESTS 100
 
@@ -24,7 +25,7 @@ typedef void (^failBlock)(NSError* error);
 @property (nonatomic, readwrite)         NSString                              *rootPath;
 @property (nonatomic, readwrite)         NSURL                                 *baseURL;
 
-@property (nonatomic, strong)           NCNetworkRequestSerializer            *networkRequestSerializer;
+@property (nonatomic, strong)            NCNetworkRequestSerializer            *networkRequestSerializer;
 
 @end
 
@@ -32,10 +33,13 @@ typedef void (^failBlock)(NSError* error);
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithBaseURL:(NSURL*)url
+- (instancetype)initWithBaseURL:(NSURL*)url specialFields:(NSDictionary *)specialFields
 {
     (self = [super init]);
     if (self) {
+        
+        AFNetworkActivityIndicatorManager.sharedManager.enabled = YES;
+        
         self.baseURL = url;
         NSURLSessionConfiguration* taskConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
         taskConfig.HTTPMaximumConnectionsPerHost = MAX_CONCURENT_REQUESTS;
@@ -45,6 +49,7 @@ typedef void (^failBlock)(NSError* error);
         taskConfig.HTTPShouldSetCookies = NO;
         
         self.networkRequestSerializer = [NCNetworkRequestSerializer serializer];
+        self.networkRequestSerializer.specialFields = specialFields;
         
         self.manager = [[AFHTTPSessionManager alloc] initWithBaseURL:url sessionConfiguration:taskConfig];
         [self.manager setRequestSerializer:self.networkRequestSerializer];
@@ -175,9 +180,9 @@ typedef void (^failBlock)(NSError* error);
         NSMutableURLRequest *request = [weakSelf.networkRequestSerializer serializeRequestWithMethod:method path:path parameters:parameters customHeaders:customHeaders failure:failureBlock];
         task = [weakSelf.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (!error) {
-                //            LOG_NETWORK(@"Response <<< : %li \n%@\n%@", (long)weakself.requestNumber, [NSString stringWithString:[weakself.urlRequest.URL absoluteString]], [[NSString alloc] initWithData:responseObject encoding: NSUTF8StringEncoding]);
+//                LOG_NETWORK(@"Response <<< : %li \n%@\n%@", (long)weakself.requestNumber, [NSString stringWithString:[weakself.urlRequest.URL absoluteString]], [[NSString alloc] initWithData:responseObject encoding: NSUTF8StringEncoding]);
                 if (successBlock) {
-                    successBlock(responseObject[@"data"]);
+                    successBlock(responseObject);
                 }
             } else {
                 [weakSelf handleError:error withFailureBlock:failureBlock];

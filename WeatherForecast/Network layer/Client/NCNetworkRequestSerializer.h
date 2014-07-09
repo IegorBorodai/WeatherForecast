@@ -10,6 +10,8 @@ typedef void (^FailureBlock)(NSError* error, BOOL isCanceled);
 
 @interface NCNetworkRequestSerializer : AFHTTPRequestSerializer <AFURLRequestSerialization>
 
+@property (strong, nonatomic) NSDictionary *specialFields;
+
 - (NSMutableURLRequest *)serializeRequestWithMethod:(NSString *)method
                                                path:(NSString *)path
                                          parameters:(NSDictionary *)parameters

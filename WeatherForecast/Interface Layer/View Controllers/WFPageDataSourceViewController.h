@@ -10,4 +10,6 @@
 
 @interface WFPageDataSourceViewController : UIViewController
 
+- (void)showViewControllerAtIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex;
+
 @end

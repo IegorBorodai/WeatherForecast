@@ -54,7 +54,7 @@ typedef enum _SelectorInferredImplType {
 + (instancetype)create
 {
     ACEphemeralObject* obj = [[ACEphemeralObject alloc] init];
-    obj.managedObject = [NSManagedObject MR_createEntity];
+    obj.managedObject = [[NSManagedObject alloc] initWithEntity:[NSEntityDescription entityForName:NSStringFromClass(self.class) inManagedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]] insertIntoManagedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     return obj;
 }
 
@@ -62,7 +62,7 @@ typedef enum _SelectorInferredImplType {
 - (void)saveWithCompletionBlock:(void (^)(BOOL success, NSError *error))completion
 {
     if (!self.managedObject && self.jsonDictionary) {
-        self.managedObject = [self convertInMemoryObjectToManaged:self.jsonDictionary class:self.class];
+        self.managedObject = [ACEphemeralObject convertInMemoryObjectToManaged:self.jsonDictionary class:self.class];
     }
     [[self.managedObject managedObjectContext] MR_saveOnlySelfWithCompletion:completion];
 }
@@ -70,7 +70,7 @@ typedef enum _SelectorInferredImplType {
 - (void)saveAndWait
 {
     if (!self.managedObject && self.jsonDictionary) {
-        self.managedObject = [self convertInMemoryObjectToManaged:self.jsonDictionary class:self.class];
+        self.managedObject = [ACEphemeralObject convertInMemoryObjectToManaged:self.jsonDictionary class:self.class];
     }
     [[self.managedObject managedObjectContext] MR_saveOnlySelfAndWait];
 }
@@ -95,7 +95,7 @@ typedef enum _SelectorInferredImplType {
 
 #pragma mark - Internal methods
 
-- (Class)getClassFromPropertyAttributes:(objc_property_t)property
++ (Class)getClassFromPropertyAttributes:(objc_property_t)property
 {
     const char *propType = property_getAttributes(property);
     NSString *propString = @(propType);
@@ -105,9 +105,9 @@ typedef enum _SelectorInferredImplType {
     return class;
 }
 
-- (NSManagedObject*)convertInMemoryObjectToManaged:(NSDictionary*)dict class:(Class)class
++ (NSManagedObject*)convertInMemoryObjectToManaged:(NSDictionary*)dict class:(Class)class
 {
-    NSManagedObject* obj = [[NSManagedObject alloc] initWithEntity:[NSEntityDescription entityForName:NSStringFromClass(class) inManagedObjectContext:self.context] insertIntoManagedObjectContext:self.context];
+    NSManagedObject* obj = [[NSManagedObject alloc] initWithEntity:[NSEntityDescription entityForName:NSStringFromClass(class) inManagedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]] insertIntoManagedObjectContext:[NSManagedObjectContext MR_contextForCurrentThread]];
     
     unsigned count;
     objc_property_t *properties = class_copyPropertyList(class, &count);
@@ -122,7 +122,7 @@ typedef enum _SelectorInferredImplType {
             if (dict[name]) {
                 if ([dict[name] isKindOfClass:[NSDictionary class]]) {
                     Class subClass = [self getClassFromPropertyAttributes:property];
-                    NSManagedObject* subObj = [self convertInMemoryObjectToManaged:dict[name] class:subClass];
+                    NSManagedObject* subObj = [ACEphemeralObject convertInMemoryObjectToManaged:dict[name] class:subClass];
                     [obj setValue:subObj forKeyPath:name];
                 } else {
                     [obj setValue:dict[name] forKeyPath:name];

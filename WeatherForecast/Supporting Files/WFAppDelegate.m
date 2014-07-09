@@ -9,13 +9,18 @@
 #import "WFAppDelegate.h"
 #import "WFAppearenceManager.h"
 #import "NCNetworkClient.h"
+#import "WFGlobalDataManager.h"
+
+#define SECRET_APP_KEY @"d4fee4b27b1b16bb2a13c3aef452415954b7ed6b"
 
 @implementation WFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [WFAppearenceManager applyDefaultAppearance];
-    [NCNetworkClient createNetworkClientWithRootPath:@""];
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"Model"];
+    [NCNetworkClient createNetworkClientWithRootPath:@"http://api.worldweatheronline.com/free/v1" specialFields:@{@"key":SECRET_APP_KEY, @"format":@"json"}];
+    [WFGlobalDataManager sharedManager];
     return YES;
 }
 							

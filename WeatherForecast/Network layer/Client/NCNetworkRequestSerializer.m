@@ -20,7 +20,7 @@
     NSMutableURLRequest *request = nil;
     
     request = [self requestWithMethod:method
-                            URLString:[[NSURL URLWithString:path relativeToURL:[NCNetworkClient networkClient].baseURL] absoluteString]
+                            URLString:[[[NCNetworkClient networkClient].baseURL URLByAppendingPathComponent:path] absoluteString]
                            parameters:parameters
                               failure:failureBlock];
     
@@ -174,10 +174,14 @@
         return request;
     }
     
-    [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    [request setValue:@"hios8dc1c8e1" forHTTPHeaderField:@"App-Marker"];
-    [request setValue:@"Bearer atq0aegd3q49ttpe2ijm4vmrg5" forHTTPHeaderField:@"Authorization"];
-    [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    if (self.specialFields && (self.specialFields.count > 0)) {
+        for (NSString *key in self.specialFields) {
+            NSString *obj = self.specialFields[key];
+            if ([key isKindOfClass:[NSString class]] && [obj isKindOfClass:[NSString class]]) {
+                request.URL = [NSURL URLWithString:[[request.URL absoluteString] stringByAppendingString:[NSString stringWithFormat:@"&%@=%@", key,obj]]];
+            }
+        }
+    }
     
     return request;
     
@@ -194,10 +198,15 @@
         return request;
     }
     
-    [request setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    [request setValue:@"hios8dc1c8e1" forHTTPHeaderField:@"App-Marker"];
-    [request setValue:@"Bearer atq0aegd3q49ttpe2ijm4vmrg5" forHTTPHeaderField:@"Authorization"];
-    [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    if (self.specialFields && (self.specialFields.count > 0)) {
+        for (NSString *key in self.specialFields) {
+            NSString *obj = self.specialFields[key];
+            if ([key isKindOfClass:[NSString class]] && [obj isKindOfClass:[NSString class]]) {
+                request.URL = [NSURL URLWithString:[[request.URL absoluteString] stringByAppendingString:[NSString stringWithFormat:@"&%@=%@", key,obj]]];
+            }
+        }
+    }
+
     
     return request;
 }
