@@ -24,6 +24,7 @@
 @property (strong, nonatomic)        NSArray                    *cityList;
 
 @property (nonatomic)                NSUInteger                 processCount;
+@property (atomic)                   BOOL                       isLocationProcessing;
 
 @end
 
@@ -57,13 +58,16 @@
         self.locationManager.delegate = self;
         self.locationManager.distanceFilter = kCLDistanceFilterNone;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [self.locationManager startUpdatingLocation];
     }
     
-    [self.searchTextField becomeFirstResponder];
-    
-    [self.locationManager startUpdatingLocation];
     // Do any additional setup after loading the view.
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.searchTextField becomeFirstResponder];
+}
+
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -101,13 +105,26 @@
     City *coreDataCity = [City MR_createEntity];
     coreDataCity.name = city;
     
+    __weak typeof(self)weakSelf = self;
     if (!fromCurrentLocation) {
         [[WFGlobalDataManager sharedManager].cityList addObject:coreDataCity];
-        [self.pageViewController showViewControllerAtIndex:[WFGlobalDataManager sharedManager].cityList.count fromIndex:self.pageIndex];
+        [self.pageViewController showViewControllerAtIndex:[WFGlobalDataManager sharedManager].cityList.count fromIndex:self.pageIndex completion:^(BOOL finished) {
+            [weakSelf clearViewControllerData];
+        }];
     } else {
+        coreDataCity.isCurrentLocation = @(YES);
         [[WFGlobalDataManager sharedManager].cityList insertObject:coreDataCity atIndex:0];
-        [self.pageViewController showViewControllerAtIndex:1 fromIndex:self.pageIndex];
+        [self.pageViewController showViewControllerAtIndex:1 fromIndex:self.pageIndex completion:^(BOOL finished) {
+            [weakSelf clearViewControllerData];
+        }];
     }
+}
+
+- (void)clearViewControllerData
+{
+    self.searchTextField.text = @"";
+    self.cityList = @[];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Text Field Delegate
@@ -183,15 +200,18 @@
 {
     NSLog(@"didUpdateToLocation: %@", newLocation);
     //    CLLocation *currentLocation = newLocation;
-    
-    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
-    __weak typeof(self)weakSelf = self;
-    [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        CLPlacemark *placemark = [placemarks firstObject];
-        if (placemark) {
-            [weakSelf getForecastForCity:placemark.locality fromCurrentLocation:YES];
-        }
-    }];
+    if (!self.isLocationProcessing) {
+        self.isLocationProcessing = YES;
+        [self.locationManager stopUpdatingLocation];
+        CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+        __weak typeof(self)weakSelf = self;
+        [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+            CLPlacemark *placemark = [placemarks firstObject];
+            if (placemark) {
+                [weakSelf getForecastForCity:placemark.locality fromCurrentLocation:YES];
+            }
+        }];
+    }
 }
 /*
  #pragma mark - Navigation

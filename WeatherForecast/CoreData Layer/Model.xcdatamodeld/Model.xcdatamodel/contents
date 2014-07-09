@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="City" representedClassName="" syncable="YES">
+    <entity name="City" representedClassName="City" syncable="YES">
         <attribute name="isCurrentLocation" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="updatedOn" attributeType="Date" defaultDateTimeInterval="426589200" syncable="YES"/>
-        <relationship name="weatherForecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherForecast" inverseName="city" inverseEntity="WeatherForecast" syncable="YES"/>
+        <relationship name="weatherForecast" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WeatherForecast" inverseName="city" inverseEntity="WeatherForecast" syncable="YES"/>
     </entity>
     <entity name="WeatherForecast" representedClassName="WeatherForecast" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,14 +15,14 @@
         <attribute name="tempMaxC" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tempMinC" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weatherCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="weatherDesc" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="weatherDesc" optional="YES" transient="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="weatherType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="winddir16Point" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="windspeedKmph" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="weatherForecast" inverseEntity="City" syncable="YES"/>
     </entity>
     <elements>
+        <element name="City" positionX="-290" positionY="63" width="128" height="103"/>
         <element name="WeatherForecast" positionX="-63" positionY="-18" width="128" height="238"/>
-        <element name="City" positionX="-63" positionY="63" width="128" height="103"/>
     </elements>
 </model>

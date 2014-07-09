@@ -27,7 +27,6 @@
 
 -(void)setWeatherDesc:(NSArray *)weatherDesc
 {
-    [super setValue:weatherDesc forKeyPath:@"weatherDesc"];
     NSDictionary* val = [weatherDesc firstObject];
     if (val && [val isKindOfClass:[NSDictionary class]] && val[@"value"]) {
         self.weatherType = [weatherDesc firstObject][@"value"];

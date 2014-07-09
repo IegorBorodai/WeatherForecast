@@ -13,9 +13,22 @@
 
 @interface City : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * isCurrentLocation;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) WeatherForecast *weatherForecast;
-@property (nonatomic, retain) NSNumber *isCurrentLocation;
-@property (nonatomic, retain) NSDate *updatedOn;
+@property (nonatomic, retain) NSDate * updatedOn;
+@property (nonatomic, retain) NSOrderedSet *weatherForecast;
+@end
 
+@interface City (CoreDataGeneratedAccessors)
+
+- (void)insertObject:(WeatherForecast *)value inWeatherForecastAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromWeatherForecastAtIndex:(NSUInteger)idx;
+- (void)insertWeatherForecast:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeWeatherForecastAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInWeatherForecastAtIndex:(NSUInteger)idx withObject:(WeatherForecast *)value;
+- (void)replaceWeatherForecastAtIndexes:(NSIndexSet *)indexes withWeatherForecast:(NSArray *)values;
+- (void)addWeatherForecastObject:(WeatherForecast *)value;
+- (void)removeWeatherForecastObject:(WeatherForecast *)value;
+- (void)addWeatherForecast:(NSOrderedSet *)values;
+- (void)removeWeatherForecast:(NSOrderedSet *)values;
 @end

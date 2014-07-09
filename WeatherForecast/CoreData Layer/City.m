@@ -12,9 +12,16 @@
 
 @implementation City
 
-@dynamic name;
-@dynamic weatherForecast;
 @dynamic isCurrentLocation;
+@dynamic name;
 @dynamic updatedOn;
+@dynamic weatherForecast;
+
+
+- (void)addWeatherForecastObject:(WeatherForecast *)value {
+    NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.weatherForecast];
+    [tempSet addObject:value];
+    self.weatherForecast = tempSet;
+}
 
 @end

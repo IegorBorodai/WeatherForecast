@@ -33,6 +33,10 @@
 		E557A557196C8B7400537F37 /* WFCityWeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A556196C8B7400537F37 /* WFCityWeatherViewController.m */; };
 		E557A55A196C8B8100537F37 /* WFRightSideCityLookupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A559196C8B8100537F37 /* WFRightSideCityLookupViewController.m */; };
 		E570A8BD196D14CA00D63023 /* WFPageBaseContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E570A8BC196D14CA00D63023 /* WFPageBaseContentViewController.m */; };
+		E570DC64196DC6D500604472 /* NimbusSanNovDLig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E570DC62196DC6D500604472 /* NimbusSanNovDLig.ttf */; };
+		E570DC65196DC6D500604472 /* NimbusSanNovDUltLig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E570DC63196DC6D500604472 /* NimbusSanNovDUltLig.ttf */; };
+		E5754D71196DAAB400E41359 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = E5754D70196DAAB400E41359 /* City.m */; };
+		E5754D78196DC15B00E41359 /* UILabel+CustomFont.m in Sources */ = {isa = PBXBuildFile; fileRef = E5754D77196DC15B00E41359 /* UILabel+CustomFont.m */; };
 		E576DB4F196D55E8002597CD /* Lyt.m in Sources */ = {isa = PBXBuildFile; fileRef = E576DAB2196D55E8002597CD /* Lyt.m */; };
 		E576DB50196D55E8002597CD /* MKMapViewX.m in Sources */ = {isa = PBXBuildFile; fileRef = E576DAB5196D55E8002597CD /* MKMapViewX.m */; };
 		E576DB51196D55E8002597CD /* NSDate+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = E576DAB8196D55E8002597CD /* NSDate+Compare.m */; };
@@ -98,9 +102,8 @@
 		E5CC168C196C97F400CC06C6 /* WFAppearenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CC168B196C97F400CC06C6 /* WFAppearenceManager.m */; };
 		E5CC1690196C999E00CC06C6 /* WFPageDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CC168F196C999E00CC06C6 /* WFPageDataSourceViewController.m */; };
 		E5EEA13E196D6B8A003F7AEE /* WFGlobalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EEA13D196D6B8A003F7AEE /* WFGlobalDataManager.m */; };
-		E5EEA141196D6CA1003F7AEE /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EEA140196D6CA1003F7AEE /* City.m */; };
 		E5EEA144196D7E8B003F7AEE /* WFDayForecastView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EEA143196D7E8B003F7AEE /* WFDayForecastView.m */; };
-		E5EEA146196D8032003F7AEE /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5EEA145196D8032003F7AEE /* View.xib */; };
+		E5EEA146196D8032003F7AEE /* WFDayForecastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5EEA145196D8032003F7AEE /* WFDayForecastView.xib */; };
 		E5EEA149196D8757003F7AEE /* PHGraphObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EEA148196D8757003F7AEE /* PHGraphObject.m */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +160,12 @@
 		E557A559196C8B8100537F37 /* WFRightSideCityLookupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFRightSideCityLookupViewController.m; sourceTree = "<group>"; };
 		E570A8BB196D14CA00D63023 /* WFPageBaseContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFPageBaseContentViewController.h; sourceTree = "<group>"; };
 		E570A8BC196D14CA00D63023 /* WFPageBaseContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFPageBaseContentViewController.m; sourceTree = "<group>"; };
+		E570DC62196DC6D500604472 /* NimbusSanNovDLig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NimbusSanNovDLig.ttf; sourceTree = "<group>"; };
+		E570DC63196DC6D500604472 /* NimbusSanNovDUltLig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NimbusSanNovDUltLig.ttf; sourceTree = "<group>"; };
+		E5754D6F196DAAB400E41359 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
+		E5754D70196DAAB400E41359 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
+		E5754D76196DC15B00E41359 /* UILabel+CustomFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+CustomFont.h"; sourceTree = "<group>"; };
+		E5754D77196DC15B00E41359 /* UILabel+CustomFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+CustomFont.m"; sourceTree = "<group>"; };
 		E576DAAF196D55E8002597CD /* CategoriesExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesExtension.h; sourceTree = "<group>"; };
 		E576DAB1196D55E8002597CD /* Lyt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lyt.h; sourceTree = "<group>"; };
 		E576DAB2196D55E8002597CD /* Lyt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lyt.m; sourceTree = "<group>"; };
@@ -293,11 +302,9 @@
 		E5CC168F196C999E00CC06C6 /* WFPageDataSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFPageDataSourceViewController.m; sourceTree = "<group>"; };
 		E5EEA13C196D6B8A003F7AEE /* WFGlobalDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFGlobalDataManager.h; sourceTree = "<group>"; };
 		E5EEA13D196D6B8A003F7AEE /* WFGlobalDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFGlobalDataManager.m; sourceTree = "<group>"; };
-		E5EEA13F196D6CA1003F7AEE /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
-		E5EEA140196D6CA1003F7AEE /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		E5EEA142196D7E8B003F7AEE /* WFDayForecastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFDayForecastView.h; sourceTree = "<group>"; };
 		E5EEA143196D7E8B003F7AEE /* WFDayForecastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFDayForecastView.m; sourceTree = "<group>"; };
-		E5EEA145196D8032003F7AEE /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		E5EEA145196D8032003F7AEE /* WFDayForecastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WFDayForecastView.xib; sourceTree = "<group>"; };
 		E5EEA147196D8757003F7AEE /* PHGraphObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHGraphObject.h; sourceTree = "<group>"; };
 		E5EEA148196D8757003F7AEE /* PHGraphObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHGraphObject.m; sourceTree = "<group>"; };
 		E5EEA14A196D87A8003F7AEE /* WFWeatherForecastProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFWeatherForecastProtocol.h; sourceTree = "<group>"; };
@@ -398,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				E576DAAF196D55E8002597CD /* CategoriesExtension.h */,
+				E5754D75196DC13D00E41359 /* UILabel */,
 				E576DAB0196D55E8002597CD /* Lyt */,
 				E576DAB3196D55E8002597CD /* MKMapView */,
 				E576DAB6196D55E8002597CD /* NSDate */,
@@ -437,9 +445,9 @@
 			children = (
 				E557A4D9196C860500537F37 /* ACEphemeralObject.h */,
 				E557A4DA196C860500537F37 /* ACEphemeralObject.m */,
+				E5754D6F196DAAB400E41359 /* City.h */,
+				E5754D70196DAAB400E41359 /* City.m */,
 				E53FA12F196D3D7D0083173F /* Model.xcdatamodeld */,
-				E5EEA13F196D6CA1003F7AEE /* City.h */,
-				E5EEA140196D6CA1003F7AEE /* City.m */,
 				E53FA132196D3F040083173F /* WeatherForecast.h */,
 				E53FA133196D3F040083173F /* WeatherForecast.m */,
 			);
@@ -515,10 +523,12 @@
 		E557A4F1196C860500537F37 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E570DC62196DC6D500604472 /* NimbusSanNovDLig.ttf */,
+				E570DC63196DC6D500604472 /* NimbusSanNovDUltLig.ttf */,
 				E557A4F2196C860500537F37 /* Main.storyboard */,
 				E557A4F4196C860500537F37 /* InfoPlist.strings */,
 				E557A4F6196C860500537F37 /* Images.xcassets */,
-				E5EEA145196D8032003F7AEE /* View.xib */,
+				E5EEA145196D8032003F7AEE /* WFDayForecastView.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -557,6 +567,15 @@
 			children = (
 			);
 			path = Vendor;
+			sourceTree = "<group>";
+		};
+		E5754D75196DC13D00E41359 /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				E5754D76196DC15B00E41359 /* UILabel+CustomFont.h */,
+				E5754D77196DC15B00E41359 /* UILabel+CustomFont.m */,
+			);
+			path = UILabel;
 			sourceTree = "<group>";
 		};
 		E576DAB0196D55E8002597CD /* Lyt */ = {
@@ -977,10 +996,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5EEA146196D8032003F7AEE /* View.xib in Resources */,
+				E5EEA146196D8032003F7AEE /* WFDayForecastView.xib in Resources */,
+				E570DC64196DC6D500604472 /* NimbusSanNovDLig.ttf in Resources */,
 				E557A50C196C860500537F37 /* Images.xcassets in Resources */,
 				E557A50A196C860500537F37 /* Main.storyboard in Resources */,
 				E557A50B196C860500537F37 /* InfoPlist.strings in Resources */,
+				E570DC65196DC6D500604472 /* NimbusSanNovDUltLig.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,7 +1063,6 @@
 				E576DB77196D55E8002597CD /* UIDeviceX.m in Sources */,
 				E576DB78196D55E8002597CD /* UIGestureRecognizer+SHGestureRecognizerBlocks.m in Sources */,
 				E576DB61196D55E8002597CD /* NSObject+MTKObserving.m in Sources */,
-				E5EEA141196D6CA1003F7AEE /* City.m in Sources */,
 				E576DB74196D55E8002597CD /* UIColor+Modify.m in Sources */,
 				E576DB54196D55E8002597CD /* NSDate+DateTime.m in Sources */,
 				E557A50D196C860500537F37 /* main.m in Sources */,
@@ -1072,6 +1092,7 @@
 				E576DB5A196D55E8002597CD /* NSDateX.m in Sources */,
 				E576DB4F196D55E8002597CD /* Lyt.m in Sources */,
 				E5EEA149196D8757003F7AEE /* PHGraphObject.m in Sources */,
+				E5754D78196DC15B00E41359 /* UILabel+CustomFont.m in Sources */,
 				E576DB86196D55E8002597CD /* UIView+AnimationExtensions.m in Sources */,
 				E576DB83196D55E8002597CD /* UITabBarControllerX.m in Sources */,
 				E557A501196C860500537F37 /* ACEphemeralObject.m in Sources */,
@@ -1107,6 +1128,7 @@
 				E576DB64196D55E8002597CD /* NSSetX.m in Sources */,
 				E576DB81196D55E8002597CD /* UISearchBar+Blocks.m in Sources */,
 				E557A557196C8B7400537F37 /* WFCityWeatherViewController.m in Sources */,
+				E5754D71196DAAB400E41359 /* City.m in Sources */,
 				E576DB66196D55E8002597CD /* NSString+Color.m in Sources */,
 				E576DB68196D55E8002597CD /* NSString+Validator.m in Sources */,
 				E576DB6B196D55E8002597CD /* NSUUIDX.m in Sources */,
@@ -1197,6 +1219,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "F5D07306-AF08-4012-97F5-13349AE520C0";
 				SDKROOT = iphoneos;
 				WARNING_CFLAGS = (
 					"-Wno-objc-interface-ivars",
@@ -1244,6 +1267,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "F5D07306-AF08-4012-97F5-13349AE520C0";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = (

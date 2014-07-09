@@ -159,4 +159,8 @@
 #import "UIWebView+SHWebViewBlocks.h"
 #import "UIWebViewX.h"
 
+#pragma mark - UILabel
+
+#import "UILabel+CustomFont.h"
+
 #endif

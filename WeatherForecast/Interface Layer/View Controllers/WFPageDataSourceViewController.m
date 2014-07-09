@@ -54,16 +54,14 @@
 
 #pragma mark - Public methods
 
-- (void)showViewControllerAtIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex
+- (void)showViewControllerAtIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex completion:(void (^)(BOOL finished))completion
 {
     UIPageViewControllerNavigationDirection direction = fromIndex > index ? UIPageViewControllerNavigationDirectionReverse : UIPageViewControllerNavigationDirectionForward;
     
     WFPageBaseContentViewController *newViewController = [self viewControllerAtIndex:index];
     NSArray *viewControllers = @[newViewController];
     
-    [self.pageViewController setViewControllers:viewControllers direction:direction animated:YES completion:^(BOOL finished) {
-        
-    }];
+    [self.pageViewController setViewControllers:viewControllers direction:direction animated:YES completion:completion];
 }
 
 #pragma mark - Private methods

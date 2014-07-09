@@ -80,7 +80,7 @@ static NCNetworkManager *sharedNetworkClient = nil;
 + (NSURLSessionTask*)getWeatherForecastForQuery:(NSString*)query successBlock:(void (^)(NSArray<WFWeatherForecastProtocol> *weatherForecast))success
                                         failure:(void (^)(NSError *error, BOOL isCanceled))failure
 {
-    NSURLSessionTask *task = [[NCNetworkClient networkClient] enqueueTaskWithMethod:@"GET" path:@"/search.ashx" parameters:@{@"q":query} customHeaders:nil success:^(id responseObject) {
+    NSURLSessionTask *task = [[NCNetworkClient networkClient] enqueueTaskWithMethod:@"GET" path:@"/weather.ashx" parameters:@{@"q":query,@"num_of_days":@"5"} customHeaders:nil success:^(id responseObject) {
         if (success) {
             NSMutableArray *weatherForecast = [@[] mutableCopy];
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -104,7 +104,7 @@ static NCNetworkManager *sharedNetworkClient = nil;
                 }
             }
             NSError* error = nil;
-            NSArray<WFWeatherForecastProtocol> *protocolArray = ((NSArray<WFWeatherForecastProtocol>*)[PHGraphObject graphObjectWrappingArray:responseObject withProtocolConversion:@protocol(WFWeatherForecastProtocol) subProtocols:@[@protocol(WFWeatherForecastDescriptionProtocol)] error:&error]);
+            NSArray<WFWeatherForecastProtocol> *protocolArray = ((NSArray<WFWeatherForecastProtocol>*)[PHGraphObject graphObjectWrappingArray:weatherForecast withProtocolConversion:@protocol(WFWeatherForecastProtocol) subProtocols:@[@protocol(WFWeatherForecastDescriptionProtocol)] error:&error]);
             if (error) {
                 NSLog(@"Protocol mapping error = %@",error.localizedDescription);
             }
