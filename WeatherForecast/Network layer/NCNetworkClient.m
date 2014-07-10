@@ -15,7 +15,7 @@ static NCNetworkManager *sharedNetworkClient = nil;
 
 @implementation NCNetworkClient
 
-- (BOOL)checkReachabilityStatusWithError:(NSError* __autoreleasing*)error
++ (BOOL)checkReachabilityStatusWithError:(NSError* __autoreleasing*)error
 {
     return [sharedNetworkClient checkReachabilityStatusWithError:error];
 }
@@ -47,9 +47,25 @@ static NCNetworkManager *sharedNetworkClient = nil;
                                    failure:(void (^)(NSError *error, BOOL isCanceled))failure
 {
     NSURLSessionTask *task = [[NCNetworkClient networkClient] enqueueTaskWithMethod:@"GET" path:@"/search.ashx" parameters:@{@"q":query} customHeaders:nil success:^(id responseObject) {
-        if (success) {
+        if (success && responseObject) {
             NSMutableArray *cityList = [@[] mutableCopy];
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if (responseObject[@"data"] && [responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *data = responseObject[@"data"];
+                    if (data[@"error"] && [data[@"error"] isKindOfClass:[NSArray class]]) { // failure
+                        NSArray* errors = data[@"error"];
+                        NSDictionary* error = [errors firstObject];
+                        if (error && [error isKindOfClass:[NSDictionary class]]) {
+                            NSString* msg = error[@"msg"];
+                            if (msg && [msg isKindOfClass:[NSString class]]) {
+                                NSError* error = [NSError errorWithDomain:@"Bad request" code:400 userInfo:@{NSLocalizedDescriptionKey: msg}];
+                                failure(error, NO);
+                                return;
+                            }
+                        }
+                    }
+                }
+
                 if (responseObject[@"search_api"] && [responseObject[@"search_api"] isKindOfClass:[NSDictionary class]]) {
                     NSDictionary *searchApi = responseObject[@"search_api"];
                     if (searchApi[@"result"] && [searchApi[@"result"] isKindOfClass:[NSArray class]]) {
@@ -81,11 +97,24 @@ static NCNetworkManager *sharedNetworkClient = nil;
                                         failure:(void (^)(NSError *error, BOOL isCanceled))failure
 {
     NSURLSessionTask *task = [[NCNetworkClient networkClient] enqueueTaskWithMethod:@"GET" path:@"/weather.ashx" parameters:@{@"q":query,@"num_of_days":@"5"} customHeaders:nil success:^(id responseObject) {
-        if (success) {
+        if (success && responseObject) {
             NSMutableArray *weatherForecast = [@[] mutableCopy];
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if (responseObject[@"data"] && [responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
                     NSDictionary *data = responseObject[@"data"];
+                    if (data[@"error"] && [data[@"error"] isKindOfClass:[NSArray class]]) { // failure
+                        NSArray* errors = data[@"error"];
+                        NSDictionary* error = [errors firstObject];
+                        if (error && [error isKindOfClass:[NSDictionary class]]) {
+                            NSString* msg = error[@"msg"];
+                            if (msg && [msg isKindOfClass:[NSString class]]) {
+                                NSError* error = [NSError errorWithDomain:@"Bad request" code:400 userInfo:@{NSLocalizedDescriptionKey: msg}];
+                                failure(error, NO);
+                                return;
+                            }
+                        }
+                    }
+                    
                     if (data[@"current_condition"] && [data[@"current_condition"] isKindOfClass:[NSArray class]]) {
                         NSDictionary *currentCondition = [data[@"current_condition"] firstObject];
                         if (currentCondition && [currentCondition isKindOfClass:[NSDictionary class]]) {

@@ -22,7 +22,7 @@
 + (NCNetworkManager *)networkClient;
 
 // Network status
-- (BOOL)checkReachabilityStatusWithError:(NSError* __autoreleasing*)error;
++ (BOOL)checkReachabilityStatusWithError:(NSError* __autoreleasing*)error;
 
 //Requests
 

@@ -13,11 +13,6 @@
 		E557A4A3196C852200537F37 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4A2196C852200537F37 /* Foundation.framework */; };
 		E557A4A5196C852200537F37 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4A4196C852200537F37 /* CoreGraphics.framework */; };
 		E557A4A7196C852200537F37 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4A6196C852200537F37 /* UIKit.framework */; };
-		E557A4C2196C852200537F37 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4C1196C852200537F37 /* XCTest.framework */; };
-		E557A4C3196C852200537F37 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4A2196C852200537F37 /* Foundation.framework */; };
-		E557A4C4196C852200537F37 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4A6196C852200537F37 /* UIKit.framework */; };
-		E557A4CC196C852200537F37 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E557A4CA196C852200537F37 /* InfoPlist.strings */; };
-		E557A4CE196C852200537F37 /* WeatherForecastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4CD196C852200537F37 /* WeatherForecastTests.m */; };
 		E557A501196C860500537F37 /* ACEphemeralObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4DA196C860500537F37 /* ACEphemeralObject.m */; };
 		E557A506196C860500537F37 /* NCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EA196C860500537F37 /* NCNetworkManager.m */; };
 		E557A507196C860500537F37 /* NCNetworkRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EC196C860500537F37 /* NCNetworkRequestSerializer.m */; };
@@ -35,6 +30,16 @@
 		E570A8BD196D14CA00D63023 /* WFPageBaseContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E570A8BC196D14CA00D63023 /* WFPageBaseContentViewController.m */; };
 		E570DC64196DC6D500604472 /* NimbusSanNovDLig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E570DC62196DC6D500604472 /* NimbusSanNovDLig.ttf */; };
 		E570DC65196DC6D500604472 /* NimbusSanNovDUltLig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E570DC63196DC6D500604472 /* NimbusSanNovDUltLig.ttf */; };
+		E57117DB196EE6BB00EC1698 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4C1196C852200537F37 /* XCTest.framework */; };
+		E57117DC196EE6BB00EC1698 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4A2196C852200537F37 /* Foundation.framework */; };
+		E57117DD196EE6BB00EC1698 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4A6196C852200537F37 /* UIKit.framework */; };
+		E57117E3196EE6BB00EC1698 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E57117E1196EE6BB00EC1698 /* InfoPlist.strings */; };
+		E57117E5196EE6BC00EC1698 /* WeatherForecastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E57117E4196EE6BB00EC1698 /* WeatherForecastTests.m */; };
+		E57117EE196EE74300EC1698 /* PHPhoenixBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E57117ED196EE74300EC1698 /* PHPhoenixBaseTests.m */; };
+		E57117EF196EE7B300EC1698 /* NCNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4F0196C860500537F37 /* NCNetworkClient.m */; };
+		E57117F0196EE7BD00EC1698 /* NCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EA196C860500537F37 /* NCNetworkManager.m */; };
+		E57117F1196EE7BD00EC1698 /* NCNetworkRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EC196C860500537F37 /* NCNetworkRequestSerializer.m */; };
+		E57117F2196EE7BD00EC1698 /* NCNetworkResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EE196C860500537F37 /* NCNetworkResponseSerializer.m */; };
 		E5754D71196DAAB400E41359 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = E5754D70196DAAB400E41359 /* City.m */; };
 		E5754D78196DC15B00E41359 /* UILabel+CustomFont.m in Sources */ = {isa = PBXBuildFile; fileRef = E5754D77196DC15B00E41359 /* UILabel+CustomFont.m */; };
 		E576DB4F196D55E8002597CD /* Lyt.m in Sources */ = {isa = PBXBuildFile; fileRef = E576DAB2196D55E8002597CD /* Lyt.m */; };
@@ -108,7 +113,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E557A4C5196C852200537F37 /* PBXContainerItemProxy */ = {
+		E57117E7196EE6BC00EC1698 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E557A497196C852200537F37 /* Project object */;
 			proxyType = 1;
@@ -127,11 +132,7 @@
 		E557A4A2196C852200537F37 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E557A4A4196C852200537F37 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E557A4A6196C852200537F37 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E557A4C0196C852200537F37 /* WeatherForecastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherForecastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E557A4C1196C852200537F37 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		E557A4C9196C852200537F37 /* WeatherForecastTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WeatherForecastTests-Info.plist"; sourceTree = "<group>"; };
-		E557A4CB196C852200537F37 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E557A4CD196C852200537F37 /* WeatherForecastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherForecastTests.m; sourceTree = "<group>"; };
 		E557A4D9196C860500537F37 /* ACEphemeralObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEphemeralObject.h; sourceTree = "<group>"; };
 		E557A4DA196C860500537F37 /* ACEphemeralObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEphemeralObject.m; sourceTree = "<group>"; };
 		E557A4E9196C860500537F37 /* NCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetworkManager.h; sourceTree = "<group>"; };
@@ -162,6 +163,13 @@
 		E570A8BC196D14CA00D63023 /* WFPageBaseContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFPageBaseContentViewController.m; sourceTree = "<group>"; };
 		E570DC62196DC6D500604472 /* NimbusSanNovDLig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NimbusSanNovDLig.ttf; sourceTree = "<group>"; };
 		E570DC63196DC6D500604472 /* NimbusSanNovDUltLig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NimbusSanNovDUltLig.ttf; sourceTree = "<group>"; };
+		E57117DA196EE6BB00EC1698 /* WeatherForecast Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WeatherForecast Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E57117E0196EE6BB00EC1698 /* WeatherForecast Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WeatherForecast Tests-Info.plist"; sourceTree = "<group>"; };
+		E57117E2196EE6BB00EC1698 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E57117E4196EE6BB00EC1698 /* WeatherForecastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherForecastTests.m; sourceTree = "<group>"; };
+		E57117E6196EE6BC00EC1698 /* WeatherForecast Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherForecast Tests-Prefix.pch"; sourceTree = "<group>"; };
+		E57117EC196EE74300EC1698 /* PHPhoenixBaseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHPhoenixBaseTests.h; sourceTree = "<group>"; };
+		E57117ED196EE74300EC1698 /* PHPhoenixBaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHPhoenixBaseTests.m; sourceTree = "<group>"; };
 		E5754D6F196DAAB400E41359 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
 		E5754D70196DAAB400E41359 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		E5754D76196DC15B00E41359 /* UILabel+CustomFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+CustomFont.h"; sourceTree = "<group>"; };
@@ -323,13 +331,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E557A4BD196C852200537F37 /* Frameworks */ = {
+		E57117D7196EE6BB00EC1698 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E557A4C2196C852200537F37 /* XCTest.framework in Frameworks */,
-				E557A4C4196C852200537F37 /* UIKit.framework in Frameworks */,
-				E557A4C3196C852200537F37 /* Foundation.framework in Frameworks */,
+				E57117DB196EE6BB00EC1698 /* XCTest.framework in Frameworks */,
+				E57117DD196EE6BB00EC1698 /* UIKit.framework in Frameworks */,
+				E57117DC196EE6BB00EC1698 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				E557A4A8196C852200537F37 /* WeatherForecast */,
-				E557A4C7196C852200537F37 /* WeatherForecastTests */,
+				E57117DE196EE6BB00EC1698 /* WeatherForecast Tests */,
 				E557A4A1196C852200537F37 /* Frameworks */,
 				E557A4A0196C852200537F37 /* Products */,
 				777A1EF3017847CE9A4EB278 /* Pods.xcconfig */,
@@ -351,7 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				E557A49F196C852200537F37 /* WeatherForecast.app */,
-				E557A4C0196C852200537F37 /* WeatherForecastTests.xctest */,
+				E57117DA196EE6BB00EC1698 /* WeatherForecast Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -381,24 +389,6 @@
 				E557A500196C860500537F37 /* Vendor */,
 			);
 			path = WeatherForecast;
-			sourceTree = "<group>";
-		};
-		E557A4C7196C852200537F37 /* WeatherForecastTests */ = {
-			isa = PBXGroup;
-			children = (
-				E557A4CD196C852200537F37 /* WeatherForecastTests.m */,
-				E557A4C8196C852200537F37 /* Supporting Files */,
-			);
-			path = WeatherForecastTests;
-			sourceTree = "<group>";
-		};
-		E557A4C8196C852200537F37 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E557A4C9196C852200537F37 /* WeatherForecastTests-Info.plist */,
-				E557A4CA196C852200537F37 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		E557A4D7196C860500537F37 /* Category */ = {
@@ -567,6 +557,27 @@
 			children = (
 			);
 			path = Vendor;
+			sourceTree = "<group>";
+		};
+		E57117DE196EE6BB00EC1698 /* WeatherForecast Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E57117EC196EE74300EC1698 /* PHPhoenixBaseTests.h */,
+				E57117ED196EE74300EC1698 /* PHPhoenixBaseTests.m */,
+				E57117E4196EE6BB00EC1698 /* WeatherForecastTests.m */,
+				E57117DF196EE6BB00EC1698 /* Supporting Files */,
+			);
+			path = "WeatherForecast Tests";
+			sourceTree = "<group>";
+		};
+		E57117DF196EE6BB00EC1698 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E57117E0196EE6BB00EC1698 /* WeatherForecast Tests-Info.plist */,
+				E57117E1196EE6BB00EC1698 /* InfoPlist.strings */,
+				E57117E6196EE6BC00EC1698 /* WeatherForecast Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		E5754D75196DC13D00E41359 /* UILabel */ = {
@@ -939,22 +950,22 @@
 			productReference = E557A49F196C852200537F37 /* WeatherForecast.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E557A4BF196C852200537F37 /* WeatherForecastTests */ = {
+		E57117D9196EE6BB00EC1698 /* WeatherForecast Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E557A4D4196C852200537F37 /* Build configuration list for PBXNativeTarget "WeatherForecastTests" */;
+			buildConfigurationList = E57117E9196EE6BC00EC1698 /* Build configuration list for PBXNativeTarget "WeatherForecast Tests" */;
 			buildPhases = (
-				E557A4BC196C852200537F37 /* Sources */,
-				E557A4BD196C852200537F37 /* Frameworks */,
-				E557A4BE196C852200537F37 /* Resources */,
+				E57117D6196EE6BB00EC1698 /* Sources */,
+				E57117D7196EE6BB00EC1698 /* Frameworks */,
+				E57117D8196EE6BB00EC1698 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E557A4C6196C852200537F37 /* PBXTargetDependency */,
+				E57117E8196EE6BC00EC1698 /* PBXTargetDependency */,
 			);
-			name = WeatherForecastTests;
-			productName = WeatherForecastTests;
-			productReference = E557A4C0196C852200537F37 /* WeatherForecastTests.xctest */;
+			name = "WeatherForecast Tests";
+			productName = "WeatherForecast Tests";
+			productReference = E57117DA196EE6BB00EC1698 /* WeatherForecast Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -967,7 +978,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Iegor Borodai";
 				TargetAttributes = {
-					E557A4BF196C852200537F37 = {
+					E57117D9196EE6BB00EC1698 = {
 						TestTargetID = E557A49E196C852200537F37;
 					};
 				};
@@ -986,7 +997,7 @@
 			projectRoot = "";
 			targets = (
 				E557A49E196C852200537F37 /* WeatherForecast */,
-				E557A4BF196C852200537F37 /* WeatherForecastTests */,
+				E57117D9196EE6BB00EC1698 /* WeatherForecast Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1005,11 +1016,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E557A4BE196C852200537F37 /* Resources */ = {
+		E57117D8196EE6BB00EC1698 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E557A4CC196C852200537F37 /* InfoPlist.strings in Resources */,
+				E57117E3196EE6BB00EC1698 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1139,33 +1150,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E557A4BC196C852200537F37 /* Sources */ = {
+		E57117D6196EE6BB00EC1698 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E557A4CE196C852200537F37 /* WeatherForecastTests.m in Sources */,
+				E57117EE196EE74300EC1698 /* PHPhoenixBaseTests.m in Sources */,
+				E57117E5196EE6BC00EC1698 /* WeatherForecastTests.m in Sources */,
+				E57117F2196EE7BD00EC1698 /* NCNetworkResponseSerializer.m in Sources */,
+				E57117EF196EE7B300EC1698 /* NCNetworkClient.m in Sources */,
+				E57117F0196EE7BD00EC1698 /* NCNetworkManager.m in Sources */,
+				E57117F1196EE7BD00EC1698 /* NCNetworkRequestSerializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E557A4C6196C852200537F37 /* PBXTargetDependency */ = {
+		E57117E8196EE6BC00EC1698 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E557A49E196C852200537F37 /* WeatherForecast */;
-			targetProxy = E557A4C5196C852200537F37 /* PBXContainerItemProxy */;
+			targetProxy = E57117E7196EE6BC00EC1698 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E557A4CA196C852200537F37 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E557A4CB196C852200537F37 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		E557A4F2196C860500537F37 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1178,6 +1186,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				E557A4F5196C860500537F37 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E57117E1196EE6BB00EC1698 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E57117E2196EE6BB00EC1698 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1319,8 +1335,9 @@
 			};
 			name = Release;
 		};
-		E557A4D5196C852200537F37 /* Debug */ = {
+		E57117EA196EE6BC00EC1698 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 777A1EF3017847CE9A4EB278 /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WeatherForecast.app/WeatherForecast";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1329,20 +1346,21 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WeatherForecast/WeatherForecast-Prefix.pch";
+				GCC_PREFIX_HEADER = "WeatherForecast Tests/WeatherForecast Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "WeatherForecastTests/WeatherForecastTests-Info.plist";
+				INFOPLIST_FILE = "WeatherForecast Tests/WeatherForecast Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
-		E557A4D6196C852200537F37 /* Release */ = {
+		E57117EB196EE6BC00EC1698 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 777A1EF3017847CE9A4EB278 /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WeatherForecast.app/WeatherForecast";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1351,8 +1369,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WeatherForecast/WeatherForecast-Prefix.pch";
-				INFOPLIST_FILE = "WeatherForecastTests/WeatherForecastTests-Info.plist";
+				GCC_PREFIX_HEADER = "WeatherForecast Tests/WeatherForecast Tests-Prefix.pch";
+				INFOPLIST_FILE = "WeatherForecast Tests/WeatherForecast Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1380,14 +1398,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E557A4D4196C852200537F37 /* Build configuration list for PBXNativeTarget "WeatherForecastTests" */ = {
+		E57117E9196EE6BC00EC1698 /* Build configuration list for PBXNativeTarget "WeatherForecast Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E557A4D5196C852200537F37 /* Debug */,
-				E557A4D6196C852200537F37 /* Release */,
+				E57117EA196EE6BC00EC1698 /* Debug */,
+				E57117EB196EE6BC00EC1698 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
