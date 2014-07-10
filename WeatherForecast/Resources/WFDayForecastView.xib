@@ -8,8 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WFDayForecastView">
             <connections>
                 <outlet property="dateLabel" destination="t7J-VT-LKj" id="TFZ-Ew-vT5"/>
-                <outlet property="dayTemperatureLabel" destination="ju1-Tb-pz4" id="jtS-DU-ItJ"/>
-                <outlet property="nightTemperatureLabel" destination="FQ0-oi-jiL" id="NoC-Ef-RJy"/>
+                <outlet property="temperatureLabel" destination="Daa-Mo-dn9" id="pZY-0n-XZH"/>
                 <outlet property="weatherImageView" destination="4oZ-it-ZO2" id="B48-d4-2vE"/>
             </connections>
         </placeholder>
@@ -19,12 +18,11 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7J-VT-LKj">
-                    <rect key="frame" x="8" y="2" width="34" height="20"/>
+                    <rect key="frame" x="9" y="2" width="33" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <size key="shadowOffset" width="1" height="1"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="text" value=""/>
@@ -46,31 +44,12 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" misplaced="YES" text="14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ju1-Tb-pz4">
-                    <rect key="frame" x="4" y="78" width="20" height="20"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Daa-Mo-dn9">
+                    <rect key="frame" x="6" y="81" width="38" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="1" green="0.021897998209999998" blue="0.81383373619999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    <size key="shadowOffset" width="1" height="1"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="text" value=""/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="alpha">
-                            <integer key="value" value="0"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="7" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQ0-oi-jiL">
-                    <rect key="frame" x="26" y="78" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    <size key="shadowOffset" width="1" height="1"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="text" value=""/>
                         <userDefinedRuntimeAttribute type="number" keyPath="alpha">
@@ -84,13 +63,10 @@
                 <constraint firstAttribute="centerY" secondItem="4oZ-it-ZO2" secondAttribute="centerY" id="B6q-8X-8gx"/>
                 <constraint firstAttribute="height" constant="100" id="Bpf-mL-7Oc"/>
                 <constraint firstAttribute="centerX" secondItem="4oZ-it-ZO2" secondAttribute="centerX" id="Fh6-QN-a1E"/>
-                <constraint firstAttribute="bottom" secondItem="FQ0-oi-jiL" secondAttribute="bottom" constant="2" id="KMp-n6-qyw"/>
-                <constraint firstAttribute="bottom" secondItem="ju1-Tb-pz4" secondAttribute="bottom" constant="2" id="N5M-iY-vkb"/>
-                <constraint firstItem="ju1-Tb-pz4" firstAttribute="leading" secondItem="SD9-u2-E4a" secondAttribute="leading" priority="750" constant="4" id="Q9Y-Z6-TKV"/>
+                <constraint firstAttribute="centerX" secondItem="Daa-Mo-dn9" secondAttribute="centerX" id="Ohu-OD-iT6"/>
                 <constraint firstAttribute="width" constant="50" id="XUd-v5-bEr"/>
                 <constraint firstItem="4oZ-it-ZO2" firstAttribute="width" secondItem="SD9-u2-E4a" secondAttribute="width" id="ca9-fP-vOa"/>
-                <constraint firstItem="FQ0-oi-jiL" firstAttribute="leading" secondItem="ju1-Tb-pz4" secondAttribute="trailing" id="d8d-ZW-kVC"/>
-                <constraint firstAttribute="trailing" secondItem="FQ0-oi-jiL" secondAttribute="trailing" priority="750" constant="4" id="h70-ka-ccz"/>
+                <constraint firstAttribute="bottom" secondItem="Daa-Mo-dn9" secondAttribute="bottom" id="l9t-iP-bhk"/>
                 <constraint firstAttribute="centerX" secondItem="t7J-VT-LKj" secondAttribute="centerX" id="n4n-lH-1i5"/>
             </constraints>
         </view>

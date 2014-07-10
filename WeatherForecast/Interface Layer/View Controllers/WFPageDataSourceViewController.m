@@ -48,7 +48,6 @@
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
-#warning Почините это бля!
     return UIStatusBarStyleLightContent;
 }
 

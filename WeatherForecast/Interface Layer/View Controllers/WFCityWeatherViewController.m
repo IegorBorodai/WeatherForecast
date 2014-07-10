@@ -101,8 +101,7 @@
     for (WFDayForecastView *view in self.dayForecastView) {
         view.dateLabel.alpha = 1.0;
         view.weatherImageView.alpha = 1.0;
-        view.dayTemperatureLabel.alpha = 1.0;
-        view.nightTemperatureLabel.alpha = 1.0;
+        view.temperatureLabel.alpha = 1.0;
     }
 }
 
@@ -115,29 +114,17 @@
     if (forecast.temp_C) {
         self.temperatureLabel.text = [forecast.temp_C stringByAppendingString:@"°"];
         self.nightTemperatureLabel.text = @"";
-#warning refactor
-        NSDateFormatter *dateFormatter = [NSDateFormatter new];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-        [dateFormatter setDoesRelativeDateFormatting:NO];
         
-        NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+        NSString *dateString = [[WFGlobalDataManager sharedManager].dateToStringFormatter stringFromDate:[NSDate date]];
         
         self.dateLabel.text = dateString;
     } else {
         self.temperatureLabel.text = [forecast.tempMaxC stringByAppendingString:@"°"];
         self.nightTemperatureLabel.text = forecast.tempMinC;
         
-        NSDateFormatter * formater = [[NSDateFormatter alloc] init];
-        [formater setDateFormat:@"'yyyy'-'MM'-'dd'"];
-        NSDate *resDate = [formater dateFromString:forecast.date];
+        NSDate *resDate = [[WFGlobalDataManager sharedManager].stringToDateFormatter dateFromString:forecast.date];
         
-        NSDateFormatter *dateFormatter = [NSDateFormatter new];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-        [dateFormatter setDoesRelativeDateFormatting:NO];
-        
-        NSString *dateString = [dateFormatter stringFromDate:resDate];
+        NSString *dateString = [[WFGlobalDataManager sharedManager].dateToStringFormatter stringFromDate:resDate];
         
         self.dateLabel.text = dateString;
     }
@@ -147,21 +134,23 @@
         WeatherForecast *subForecast = self.city.weatherForecast[counter];
         view.weatherImageView.image = [[UIImage imageNamed:subForecast.weatherCode] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         if (!subForecast.temp_C) {
-            NSDateFormatter * formater = [[NSDateFormatter alloc] init];
-            [formater setDateFormat:@"yyyy'-'MM'-'dd"];
-            NSDate *resDate = [formater dateFromString:subForecast.date];
+            NSDate *resDate = [[WFGlobalDataManager sharedManager].stringToDateFormatter dateFromString:subForecast.date];
             
-            NSCalendar *cal = [NSCalendar currentCalendar];
-            NSDateComponents *components = [cal components:NSCalendarUnitDay fromDate:resDate];
+            NSDateComponents *components = [[WFGlobalDataManager sharedManager].calendar components:NSCalendarUnitDay fromDate:resDate];
             NSUInteger day = [components day];
             
             view.dateLabel.text = [NSString stringWithFormat:@"%d",day];
             
-            view.dayTemperatureLabel.text = subForecast.tempMaxC;
-            view.nightTemperatureLabel.text = subForecast.tempMinC;
+            NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:subForecast.tempMaxC];
+            NSMutableAttributedString * subString = [[NSMutableAttributedString alloc] initWithString:[@" " stringByAppendingString:subForecast.tempMaxC]];
+            [subString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:1.0 alpha:0.6] range:NSMakeRange(0, subString.length)];
+            [attrStr appendAttributedString:subString];
+            
+            view.temperatureLabel.attributedText = attrStr;
+
         } else {
             view.dateLabel.text = @"Now";
-            view.dayTemperatureLabel.text = subForecast.temp_C;
+            view.temperatureLabel.text = subForecast.temp_C;
         }
         
         ++counter;

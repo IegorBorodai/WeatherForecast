@@ -11,8 +11,13 @@
 
 @interface WFGlobalDataManager : NSObject
 
-@property (strong, atomic) NSMutableArray *cityList;
+@property (strong, atomic)    NSMutableArray  *cityList;
+@property (strong, nonatomic) NSDateFormatter *dateToStringFormatter;
+@property (strong, nonatomic) NSDateFormatter *stringToDateFormatter;
+@property (strong, nonatomic) NSCalendar      *calendar;
 
 + (WFGlobalDataManager *)sharedManager;
+
+- (NSDateFormatter *)dateToStringFormatter;
 
 @end

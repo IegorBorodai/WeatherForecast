@@ -28,8 +28,19 @@
     self = [super init];
     if (self) {
         self.cityList = [[City MR_findAll] mutableCopy];
+        
+        self.dateToStringFormatter = [NSDateFormatter new];
+        [self.dateToStringFormatter setTimeStyle:NSDateFormatterShortStyle];
+        [self.dateToStringFormatter setDateStyle:NSDateFormatterShortStyle];
+        [self.dateToStringFormatter setDoesRelativeDateFormatting:NO];
+        
+        self.stringToDateFormatter = [[NSDateFormatter alloc] init];
+        [self.stringToDateFormatter setDateFormat:@"yyyy'-'MM'-'dd"];
+        
+        self.calendar = [NSCalendar currentCalendar];
     }
     return self;
 }
+
 
 @end

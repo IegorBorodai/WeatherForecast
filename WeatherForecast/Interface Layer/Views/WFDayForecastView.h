@@ -11,7 +11,6 @@
 @interface WFDayForecastView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *weatherImageView;
-@property (weak, nonatomic) IBOutlet UILabel *dayTemperatureLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nightTemperatureLabel;
+@property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 
 @end
