@@ -365,9 +365,11 @@
                         <outlet property="dateLabel" destination="PhM-D1-vcJ" id="prD-5K-8oo"/>
                         <outlet property="decriptionView" destination="tXe-59-c0U" id="GFR-25-tCx"/>
                         <outlet property="humidityLabel" destination="GeZ-k3-DdC" id="Pxg-y1-aT3"/>
+                        <outlet property="humidityTextLabel" destination="jwb-Pp-Zmq" id="Jpm-nP-n9D"/>
                         <outlet property="nightTemperatureLabel" destination="Tsb-oL-bb3" id="zvF-Zk-31O"/>
                         <outlet property="precipMMLabel" destination="i1K-Hx-QXj" id="gsb-fe-Y7z"/>
                         <outlet property="pressureLabel" destination="oYz-AD-HOQ" id="Rf6-AD-QeI"/>
+                        <outlet property="pressureTextLabel" destination="No5-jJ-Bbn" id="DXX-S8-A89"/>
                         <outlet property="temperatureLabel" destination="k5t-9Z-hA2" id="iC1-qU-jtD"/>
                         <outlet property="temperatureView" destination="ZDt-17-teK" id="mFI-sr-VBD"/>
                         <outlet property="weatherDescriptionLabel" destination="abd-st-9b7" id="1do-D7-dMN"/>
@@ -503,7 +505,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="X5H-hT-gsE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="X5H-hT-gsE">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

@@ -103,9 +103,17 @@
         
         cell.rightUtilityButtons = buttons;
         cell.delegate = self;
+        cell.accessoryView = nil;
     } else {
         cell.rightUtilityButtons = nil;
         cell.delegate = nil;
+        
+        UIImageView *accessoryView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"locationIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        accessoryView.tintColor = [UIColor whiteColor];
+        CGRect frame = accessoryView.frame;
+        frame.size.height = cell.contentView.frame.size.height;
+        frame.size.width = frame.size.height;
+        cell.accessoryView = accessoryView;
     }
     
     cell.textLabel.text = city.name;

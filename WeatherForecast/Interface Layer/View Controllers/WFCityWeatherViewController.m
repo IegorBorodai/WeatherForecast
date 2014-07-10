@@ -26,6 +26,8 @@
 @property (weak, nonatomic)   IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic)   IBOutlet UILabel *humidityLabel;
 @property (weak, nonatomic)   IBOutlet UILabel *pressureLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *humidityTextLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *pressureTextLabel;
 @property (weak, nonatomic)   IBOutlet UILabel *precipMMLabel;
 @property (weak, nonatomic)   IBOutlet UILabel *windLabel;
 
@@ -165,8 +167,11 @@
         NSString *dateString = [[WFGlobalDataManager sharedManager].dateToStringFormatter stringFromDate:resDate];
         self.dateLabel.text = dateString;
     }
+    
     self.humidityLabel.text = forecast.humidity;
+    self.humidityTextLabel.hidden = !forecast.humidity;
     self.pressureLabel.text = forecast.pressure;
+    self.pressureTextLabel.hidden = !forecast.pressure;
     self.precipMMLabel.text = forecast.precipMM;
     self.windLabel.text = [NSString stringWithFormat:@"%@ kmph %@", forecast.windspeedKmph, forecast.winddir16Point];
     

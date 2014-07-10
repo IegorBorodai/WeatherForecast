@@ -65,16 +65,21 @@
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         [self.locationManager startUpdatingLocation];
     }
-    
-//    [self.searchTextField becomeFirstResponder];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-//    [self.searchTextField becomeFirstResponder];
+    [super viewDidAppear:animated];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0000000000000001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.searchTextField becomeFirstResponder];
+    });
 }
 
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.searchTextField resignFirstResponder];
+}
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
