@@ -574,6 +574,9 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self updateCellState];
+    if ([self.delegate respondsToSelector:@selector(swipeableTableViewCellDidEndScrolling:)]) {
+        [self.delegate swipeableTableViewCellDidEndScrolling:self];
+    }
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
@@ -583,11 +586,13 @@
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+    if ([self.delegate respondsToSelector:@selector(swipeableTableViewCellDidEndScrolling:)]) {
+        [self.delegate swipeableTableViewCellDidEndScrolling:self];
+    }
     if (!decelerate)
     {
         self.tapGestureRecognizer.enabled = YES;
     }
-    
 }
 
 #pragma mark - UIGestureRecognizerDelegate

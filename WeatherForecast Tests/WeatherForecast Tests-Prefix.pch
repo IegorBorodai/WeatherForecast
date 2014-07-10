@@ -8,4 +8,5 @@
     @import UIKit;
     @import Foundation;
     #import <AFNetworking/AFNetworking.h>
+    #import <KIF/KIF.h>
 #endif

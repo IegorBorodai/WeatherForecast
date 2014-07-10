@@ -67,7 +67,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXe-59-c0U">
-                                <rect key="frame" x="20" y="154" width="179" height="84"/>
+                                <rect key="frame" x="20" y="154" width="179" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwb-Pp-Zmq">
@@ -80,6 +80,7 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeZ-k3-DdC">
                                         <rect key="frame" x="141" y="0.0" width="38" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="Humidity Value Label"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -156,12 +157,13 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZDt-17-teK">
-                                <rect key="frame" x="20" y="154" width="179" height="84"/>
+                                <rect key="frame" x="20" y="154" width="179" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="27°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5t-9Z-hA2">
-                                        <rect key="frame" x="0.0" y="1" width="106" height="83"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="83"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="Day Temperature Label"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="70"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -171,7 +173,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="14" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsb-oL-bb3">
-                                        <rect key="frame" x="114" y="28" width="45" height="48"/>
+                                        <rect key="frame" x="114" y="27" width="45" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="40"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -183,6 +185,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="Day Temperature"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="k5t-9Z-hA2" firstAttribute="height" secondItem="ZDt-17-teK" secondAttribute="height" id="CEq-3r-nLk"/>
@@ -201,7 +204,7 @@
                                     <outletCollection property="gestureRecognizers" destination="WFG-vs-8Li" appends="YES" id="FDt-5d-Wv5"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:39 July 08" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhM-D1-vcJ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10:39 July 08" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhM-D1-vcJ">
                                 <rect key="frame" x="20" y="244" width="118" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
@@ -216,11 +219,17 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aq5-uR-gsS">
-                                <rect key="frame" x="20" y="30" width="21" height="22"/>
+                                <rect key="frame" x="20" y="30" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="City List Button"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="RMh-vH-TDB"/>
+                                    <constraint firstAttribute="width" constant="30" id="lik-xy-mAB"/>
+                                </constraints>
                                 <state key="normal" image="sideBar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="sidebar_icon_highlighted"/>
                                 <state key="highlighted" image="sidebar_icon_highlighted"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="alpha">
@@ -232,12 +241,17 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uag-Xw-ITv">
-                                <rect key="frame" x="279" y="30" width="21" height="22"/>
+                                <rect key="frame" x="280" y="30" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Z7P-ZQ-Qbe"/>
+                                    <constraint firstAttribute="height" constant="30" id="ZDW-Io-NXX"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="plusIcon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="plus_icon_highlighted"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="alpha">
                                         <integer key="value" value="0"/>
@@ -297,6 +311,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" label="City Weather Image"/>
                         <constraints>
                             <constraint firstItem="k5t-9Z-hA2" firstAttribute="leading" secondItem="PhM-D1-vcJ" secondAttribute="leading" id="54U-ms-SSf"/>
                             <constraint firstItem="dFn-2x-Po1" firstAttribute="height" secondItem="d6R-jE-Xlf" secondAttribute="height" id="5Ae-ud-fXd"/>
@@ -305,7 +320,7 @@
                             <constraint firstItem="Fm7-Hf-7W9" firstAttribute="width" secondItem="d6R-jE-Xlf" secondAttribute="width" id="F6e-45-TrP"/>
                             <constraint firstItem="Uag-Xw-ITv" firstAttribute="top" secondItem="VN8-D8-F28" secondAttribute="bottom" constant="10" id="GAG-hq-nD6"/>
                             <constraint firstItem="dFn-2x-Po1" firstAttribute="leading" secondItem="d6R-jE-Xlf" secondAttribute="trailing" id="GNh-OE-tjn"/>
-                            <constraint firstAttribute="trailing" secondItem="Uag-Xw-ITv" secondAttribute="trailing" constant="20" id="HGz-oF-lfy"/>
+                            <constraint firstAttribute="trailing" secondItem="Uag-Xw-ITv" secondAttribute="trailing" constant="10" id="HGz-oF-lfy"/>
                             <constraint firstAttribute="trailing" secondItem="t6f-3m-5Ty" secondAttribute="trailing" id="Jr2-IM-QAD"/>
                             <constraint firstItem="ZDt-17-teK" firstAttribute="top" secondItem="abd-st-9b7" secondAttribute="bottom" constant="8" id="KMb-hV-qfb"/>
                             <constraint firstItem="80t-IV-qlD" firstAttribute="width" secondItem="7Cr-be-cVN" secondAttribute="width" id="Koo-Ri-Ob6"/>
@@ -524,8 +539,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter city name..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kfg-d0-fSU">
-                                        <rect key="frame" x="15" y="-1" width="235" height="44"/>
+                                        <rect key="frame" x="15" y="-1" width="219" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="Search Field">
+                                            <accessibilityTraits key="traits" none="YES" searchField="YES"/>
+                                        </accessibility>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -534,15 +552,23 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Mn-5x-icW">
-                                        <rect key="frame" x="286" y="9" width="24" height="24"/>
+                                        <rect key="frame" x="270" y="1" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label=""/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="3re-IA-zwX"/>
+                                            <constraint firstAttribute="width" constant="40" id="F5b-Cc-no5"/>
+                                        </constraints>
                                         <state key="normal" image="crossIcon">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="highlighted" image="cross_highlighted"/>
+                                        <connections>
+                                            <action selector="closeButtonDidRecieveTap:" destination="6tQ-6w-Qx4" eventType="touchUpInside" id="YL1-GK-1m9"/>
+                                        </connections>
                                     </button>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="w4s-u6-UFZ">
-                                        <rect key="frame" x="258" y="11" width="20" height="20"/>
+                                        <rect key="frame" x="242" y="11" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
                                 </subviews>
@@ -573,7 +599,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cancelSearchButton" destination="7Mn-5x-icW" id="hgY-0O-03c"/>
                         <outlet property="searchActivityIndicator" destination="w4s-u6-UFZ" id="9PN-Fz-y1o"/>
                         <outlet property="searchTextField" destination="Kfg-d0-fSU" id="hcL-ew-Mbm"/>
                         <outlet property="tableView" destination="X5H-hT-gsE" id="jnh-4V-nmx"/>
@@ -601,6 +626,7 @@
         <image name="fahrenheit" width="40" height="40"/>
         <image name="fahrenheit_highlighted" width="40" height="40"/>
         <image name="plusIcon" width="21" height="21"/>
+        <image name="plus_icon_highlighted" width="21" height="21"/>
         <image name="sideBar" width="21" height="19"/>
         <image name="sidebar_icon_highlighted" width="21" height="19"/>
     </resources>

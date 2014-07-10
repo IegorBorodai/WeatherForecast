@@ -43,6 +43,9 @@
 {
     [super viewDidLoad];
     
+    [self.tableView setAccessibilityLabel:@"City List"];
+    [self.tableView setIsAccessibilityElement:YES];
+    
     [self.searchActivityIndicator stopAnimating];
     
     self.cityList = @[];
@@ -133,14 +136,18 @@
 
 #pragma mark - Button Actions
 
-- (IBAction)closeButtonDidRecieveTap:(id)sender {
-    if (NSNotFound == self.fromPageIndex) {
-        self.fromPageIndex = self.pageIndex - 1;
+- (IBAction)closeButtonDidRecieveTap:(UIButton *)sender {
+    if ([WFGlobalDataManager sharedManager].cityList.count > 0) {
+        if (NSNotFound == self.fromPageIndex) {
+            self.fromPageIndex = self.pageIndex - 1;
+        }
+        __weak typeof(self)weakSelf = self;
+        [self.pageViewController showViewControllerAtIndex:self.fromPageIndex fromIndex:self.pageIndex animated:YES completion:^(BOOL finished) {
+            [weakSelf clearViewControllerData];
+        }];
+    } else {
+        [self clearViewControllerData];
     }
-    __weak typeof(self)weakSelf = self;
-    [self.pageViewController showViewControllerAtIndex:self.fromPageIndex fromIndex:self.pageIndex animated:YES completion:^(BOOL finished) {
-        [weakSelf clearViewControllerData];
-    }];
 }
 
 
@@ -162,9 +169,8 @@
         [weakSelf.tableView reloadData];
         [weakSelf stopActivityIndicator];
     } failure:^(NSError *error, BOOL isCanceled) {
-        if (!isCanceled && error) {
-            [[UIAlertView completionAlertViewWithTitle:error.localizedDescription withMessage:nil] show];
-        }
+//        if (!isCanceled && error) {
+//        }
         [weakSelf stopActivityIndicator];
     }];
     return YES;
@@ -201,6 +207,10 @@
             cell.textLabel.text = cityName;
         }
     }
+    
+#ifdef DEBUG
+    [cell setAccessibilityLabel:[NSString stringWithFormat:@"Section %ld Row %ld", (long)indexPath.section, (long)indexPath.row]];
+#endif
     
     return cell;
 }

@@ -104,6 +104,7 @@
 		E576DB8A196D55E8002597CD /* UIViewController+SHTransitionBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = E576DB49196D55E8002597CD /* UIViewController+SHTransitionBlocks.m */; };
 		E576DB8B196D55E8002597CD /* UIWebView+SHWebViewBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = E576DB4C196D55E8002597CD /* UIWebView+SHWebViewBlocks.m */; };
 		E576DB8C196D55E8002597CD /* UIWebViewX.m in Sources */ = {isa = PBXBuildFile; fileRef = E576DB4E196D55E8002597CD /* UIWebViewX.m */; };
+		E57A3F06196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E57A3F05196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.m */; };
 		E5CC168C196C97F400CC06C6 /* WFAppearenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CC168B196C97F400CC06C6 /* WFAppearenceManager.m */; };
 		E5CC1690196C999E00CC06C6 /* WFPageDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CC168F196C999E00CC06C6 /* WFPageDataSourceViewController.m */; };
 		E5EEA13E196D6B8A003F7AEE /* WFGlobalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EEA13D196D6B8A003F7AEE /* WFGlobalDataManager.m */; };
@@ -304,6 +305,8 @@
 		E576DB4C196D55E8002597CD /* UIWebView+SHWebViewBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+SHWebViewBlocks.m"; sourceTree = "<group>"; };
 		E576DB4D196D55E8002597CD /* UIWebViewX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWebViewX.h; sourceTree = "<group>"; };
 		E576DB4E196D55E8002597CD /* UIWebViewX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebViewX.m; sourceTree = "<group>"; };
+		E57A3F04196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFUIWorkAroundKIFTests.h; sourceTree = "<group>"; };
+		E57A3F05196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFUIWorkAroundKIFTests.m; sourceTree = "<group>"; };
 		E5CC168A196C97F400CC06C6 /* WFAppearenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAppearenceManager.h; sourceTree = "<group>"; };
 		E5CC168B196C97F400CC06C6 /* WFAppearenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAppearenceManager.m; sourceTree = "<group>"; };
 		E5CC168E196C999E00CC06C6 /* WFPageDataSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFPageDataSourceViewController.h; sourceTree = "<group>"; };
@@ -565,6 +568,8 @@
 				E57117EC196EE74300EC1698 /* PHPhoenixBaseTests.h */,
 				E57117ED196EE74300EC1698 /* PHPhoenixBaseTests.m */,
 				E57117E4196EE6BB00EC1698 /* WeatherForecastTests.m */,
+				E57A3F04196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.h */,
+				E57A3F05196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.m */,
 				E57117DF196EE6BB00EC1698 /* Supporting Files */,
 			);
 			path = "WeatherForecast Tests";
@@ -1154,6 +1159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E57A3F06196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.m in Sources */,
 				E57117EE196EE74300EC1698 /* PHPhoenixBaseTests.m in Sources */,
 				E57117E5196EE6BC00EC1698 /* WeatherForecastTests.m in Sources */,
 				E57117F2196EE7BD00EC1698 /* NCNetworkResponseSerializer.m in Sources */,
@@ -1405,6 +1411,7 @@
 				E57117EB196EE6BC00EC1698 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

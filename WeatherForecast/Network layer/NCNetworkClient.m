@@ -86,6 +86,7 @@ static NCNetworkManager *sharedNetworkClient = nil;
                     }
                 }
             }
+            cityList = [cityList valueForKeyPath:@"@distinctUnionOfObjects.self"];
             success(cityList);
         }
     } failure:failure];

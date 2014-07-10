@@ -91,7 +91,7 @@
                    [weakSelf displayCityDataWithAlphaAnimation:YES];
                });
        } failure:^(NSError *error, BOOL isCanceled) {
-           [[UIAlertView completionAlertViewWithTitle:error.localizedDescription withMessage:nil] show];
+           [[[UIAlertView alloc] initWithTitle:error.localizedDescription message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
        }];
     } else {
         dispatch_async(dispatch_get_main_queue(), ^(void) {

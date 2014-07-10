@@ -20,6 +20,9 @@ PODS:
   - AFNetworking/UIKit (2.3.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - KIF (3.0.7):
+    - KIF/XCTest
+  - KIF/XCTest (3.0.7)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
@@ -27,11 +30,13 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 2.3.0)
+  - KIF (= 3.0.7)
   - MagicalRecord (= 2.2.0)
   - SWTableViewCell (= 0.3.0)
 
 SPEC CHECKSUMS:
   AFNetworking: e7abefee64543aa978c9d759bc8892402b1ed7d1
+  KIF: 685ab7b49c1092732b7cb3106cc957366b01e225
   MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   SWTableViewCell: 1725f7607ce4c154264c18aeb78e4636b11b0b29
 

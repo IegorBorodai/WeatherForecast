@@ -10,6 +10,8 @@
 
 @interface WFPageDataSourceViewController : UIViewController
 
+@property (strong, nonatomic) UIPageViewController            *pageViewController;
+
 - (void)showViewControllerAtIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex animated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
 
 @end

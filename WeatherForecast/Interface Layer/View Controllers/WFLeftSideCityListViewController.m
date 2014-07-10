@@ -15,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) UIScrollView      *pageViewScrollView;
+
 @end
 
 @implementation WFLeftSideCityListViewController
@@ -24,6 +26,9 @@
 {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0);
+    [self.tableView setAccessibilityLabel:@"City List"];
+    [self.tableView setIsAccessibilityElement:YES];
+    
     [self convertButtonImagesToTemplate:self.fahrenheitButton];
     [self convertButtonImagesToTemplate:self.celsiumButton];
     
@@ -36,6 +41,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.pageViewScrollView setScrollEnabled:YES];
 }
 
 #pragma mark - Private methods
@@ -84,6 +95,12 @@
     if (![city.isCurrentLocation boolValue]) {
         NSMutableArray *buttons = [@[] mutableCopy];
         [buttons sw_addUtilityButtonWithColor:[UIColor redColor] title:@"Delete"];
+#ifdef DEBUG
+        UIButton *deleteButton = [buttons firstObject];
+        [deleteButton setAccessibilityLabel:@"Delete"];
+        [deleteButton setIsAccessibilityElement:YES];
+#endif
+        
         cell.rightUtilityButtons = buttons;
         cell.delegate = self;
     } else {
@@ -93,6 +110,11 @@
     
     cell.textLabel.text = city.name;
     cell.tag = indexPath.row;
+    
+#ifdef DEBUG
+    [cell setAccessibilityLabel:[NSString stringWithFormat:@"Section %ld Row %ld", (long)indexPath.section, (long)indexPath.row]];
+    [cell setAccessibilityIdentifier:[NSString stringWithFormat:@"Section %ld Row %ld", (long)indexPath.section, (long)indexPath.row]];
+#endif
     
     return cell;
 }
@@ -114,6 +136,25 @@
     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveOnlySelfWithCompletion:NULL];
 }
 
+- (BOOL)swipeableTableViewCell:(SWTableViewCell *)cell canSwipeToState:(SWCellState)state //workaround with hiding gestrecognizer on page vc iOS6+
+{
+    if (!self.pageViewScrollView) {
+        for (UIScrollView *view in self.pageViewController.pageViewController.view.subviews) {
+            if ([view isKindOfClass:[UIScrollView class]]) {
+                self.pageViewScrollView = view;
+                [self.pageViewScrollView setScrollEnabled:NO];
+            }
+        }
+    } else {
+        [self.pageViewScrollView setScrollEnabled:NO];
+    }
+    return YES;
+}
+
+-(void)swipeableTableViewCellDidEndScrolling:(SWTableViewCell *)cell //workaround with hiding gestrecognizer on page vc iOS6+
+{
+   [self.pageViewScrollView setScrollEnabled:YES];
+}
 
 #pragma mark - Button Actions
 

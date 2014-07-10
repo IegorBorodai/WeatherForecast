@@ -16,7 +16,6 @@
 
 @interface WFPageDataSourceViewController () <UIPageViewControllerDataSource, UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) UIPageViewController            *pageViewController;
 @property (strong, nonatomic) WFPageBaseContentViewController *currentViewController;
 
 @end
@@ -31,11 +30,6 @@
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WFPageViewController"];
     self.pageViewController.dataSource = self;
     
-    for (UIGestureRecognizer * gesRecog in self.pageViewController.gestureRecognizers)
-    {
-        gesRecog.delegate = self;
-    }
-    
     WFPageBaseContentViewController *startingViewController = [self viewControllerAtIndex:1];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -46,6 +40,7 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
+    
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -145,13 +140,18 @@
 
 
 #pragma mark - Gesture recognizer
-
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    if (touch.view != self.pageViewController.view)
-    {
-        return NO;
-    }
-    return YES;
-}
+//
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+//{
+//    return YES;
+//}
+//
+//-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+//{
+//    if (touch.view != self.pageViewController.view)
+//    {
+//        return NO;
+//    }
+//    return YES;
+//}
 @end
