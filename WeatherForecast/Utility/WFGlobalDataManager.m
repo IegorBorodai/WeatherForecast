@@ -8,6 +8,14 @@
 
 #import "WFGlobalDataManager.h"
 
+@interface WFGlobalDataManager ()
+
+@property (strong, nonatomic, readwrite) NSDateFormatter *dateToStringFormatter;
+@property (strong, nonatomic, readwrite) NSDateFormatter *stringToDateFormatter;
+@property (strong, nonatomic, readwrite) NSCalendar      *calendar;
+
+@end
+
 @implementation WFGlobalDataManager
 
 + (WFGlobalDataManager *)sharedManager
@@ -38,9 +46,23 @@
         [self.stringToDateFormatter setDateFormat:@"yyyy'-'MM'-'dd"];
         
         self.calendar = [NSCalendar currentCalendar];
+        
+        _fahrenheit = [[NSUserDefaults standardUserDefaults] boolForKey:@"isFahrenheit"];
     }
     return self;
 }
 
+#pragma mark - Setters
+
+-(void)setFahrenheit:(BOOL)fahrenheit
+{
+    @synchronized(self) {
+        [self willChangeValueForKey:@"fahrenheit"];
+        _fahrenheit = fahrenheit;
+        [[NSUserDefaults standardUserDefaults] setBool:_fahrenheit forKey:@"isFahrenheit"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self didChangeValueForKey:@"fahrenheit"];
+    }
+}
 
 @end

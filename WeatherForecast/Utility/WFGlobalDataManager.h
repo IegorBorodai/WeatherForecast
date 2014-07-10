@@ -11,10 +11,12 @@
 
 @interface WFGlobalDataManager : NSObject
 
-@property (strong, atomic)    NSMutableArray  *cityList;
-@property (strong, nonatomic) NSDateFormatter *dateToStringFormatter;
-@property (strong, nonatomic) NSDateFormatter *stringToDateFormatter;
-@property (strong, nonatomic) NSCalendar      *calendar;
+@property (strong, atomic)                 NSMutableArray  *cityList;
+@property (strong, nonatomic, readonly)    NSDateFormatter *dateToStringFormatter;
+@property (strong, nonatomic, readonly)    NSDateFormatter *stringToDateFormatter;
+@property (strong, nonatomic, readonly)    NSCalendar      *calendar;
+
+@property (nonatomic)                      BOOL            fahrenheit;
 
 + (WFGlobalDataManager *)sharedManager;
 

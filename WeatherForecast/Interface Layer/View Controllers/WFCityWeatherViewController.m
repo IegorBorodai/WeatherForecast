@@ -15,21 +15,32 @@
 #import "CategoriesExtension.h"
 
 #define TWO_HOURS 24*60*60
+#define ANIMATION_DURATION 0.3
 
 @interface WFCityWeatherViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
-@property (weak, nonatomic) IBOutlet UILabel *weatherDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nightTemperatureLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+@property (weak, nonatomic)   IBOutlet UILabel *cityLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *weatherDescriptionLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *temperatureLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *nightTemperatureLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *humidityLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *pressureLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *precipMMLabel;
+@property (weak, nonatomic)   IBOutlet UILabel *windLabel;
+
+@property (weak, nonatomic)   IBOutlet UIButton *addCityButton;
+@property (weak, nonatomic)   IBOutlet UIButton *cityListButton;
+
+@property (weak, nonatomic)   IBOutlet UIView *temperatureView;
+@property (weak, nonatomic)   IBOutlet UIView *decriptionView;
+
 @property (strong, nonatomic) IBOutletCollection(WFDayForecastView) NSArray *dayForecastView;
-@property (weak, nonatomic) IBOutlet UIButton *addCityButton;
-@property (weak, nonatomic) IBOutlet UIButton *cityListButton;
 
-@property (strong, nonatomic)        City                       *city;
-@property (strong, nonatomic)        NSURLSessionTask           *weatherForecastTask;
+@property (strong, nonatomic) City               *city;
+@property (strong, nonatomic) NSURLSessionTask   *weatherForecastTask;
 
-@property (nonatomic)                NSUInteger                 currentForecast;
+@property (nonatomic)         NSUInteger         currentForecast;
 
 @end
 
@@ -47,18 +58,26 @@
 {
     [super viewDidLoad];
     self.currentForecast = 0;
-    self.city = [WFGlobalDataManager sharedManager].cityList[self.pageIndex - 1];
+    [[WFGlobalDataManager sharedManager] addObserver:self forKeyPath:@"fahrenheit" options:NSKeyValueObservingOptionNew context:NULL];
+    __weak typeof(self)weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+    weakSelf.city = [WFGlobalDataManager sharedManager].cityList[weakSelf.pageIndex - 1];
     
-    self.dayForecastView = [self.dayForecastView sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(WFDayForecastView* obj1, WFDayForecastView* obj2) {
+    weakSelf.dayForecastView = [weakSelf.dayForecastView sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(WFDayForecastView* obj1, WFDayForecastView* obj2) {
         if (obj1.tag > obj2.tag) {
             return NSOrderedDescending;
         } else {
             return NSOrderedAscending;
         }
     }];
-    if (![self.city.isComplete boolValue] || ([[NSDate date] compare: [NSDate dateWithTimeInterval:TWO_HOURS sinceDate:self.city.updatedOn]] == NSOrderedDescending)) {
-        __weak typeof(self)weakSelf = self;
-       self.weatherForecastTask = [NCNetworkClient getWeatherForecastForQuery:self.city.name successBlock:^(NSArray<WFWeatherForecastProtocol> *weatherForecast) {
+    
+    for (WFDayForecastView *view in weakSelf.dayForecastView) {
+        UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(weatherForecastViewGestureRecognizerDidFire:)];
+        [view addGestureRecognizer:recognizer];
+    }
+    if (![weakSelf.city.isComplete boolValue] || ([[NSDate date] compare: [NSDate dateWithTimeInterval:TWO_HOURS sinceDate:weakSelf.city.updatedOn]] == NSOrderedDescending)) {
+       weakSelf.weatherForecastTask = [NCNetworkClient getWeatherForecastForQuery:weakSelf.city.name successBlock:^(NSArray<WFWeatherForecastProtocol> *weatherForecast) {
            for (NSDictionary<WFWeatherForecastProtocol> *dict in weatherForecast) {
                WeatherForecast *forecast = (WeatherForecast *)[ACEphemeralObject convertInMemoryObjectToManaged:dict class:[WeatherForecast class]];
                [weakSelf.city addWeatherForecastObject:forecast];
@@ -67,13 +86,19 @@
            weakSelf.city.isComplete = @YES;
            [WFGlobalDataManager sharedManager].cityList[weakSelf.pageIndex - 1] = weakSelf.city;
            [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveOnlySelfWithCompletion:NULL];
-           [weakSelf displayCityDataWithAlphaAnimation:YES];
+
+               dispatch_async(dispatch_get_main_queue(), ^(void) {
+                   [weakSelf displayCityDataWithAlphaAnimation:YES];
+               });
        } failure:^(NSError *error, BOOL isCanceled) {
-           
+           [[UIAlertView completionAlertViewWithTitle:error.localizedDescription withMessage:nil] show];
        }];
     } else {
-        [self displayCityDataWithAlphaAnimation:NO];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [weakSelf displayCityDataWithAlphaAnimation:NO];
+        });
     }
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,24 +109,38 @@
 
 -(void)dealloc {
     [self.weatherForecastTask cancel];
+    @try {
+        [[WFGlobalDataManager sharedManager] removeObserver:self forKeyPath:@"fahrenheit"];
+    }
+    @catch (NSException * __unused exception) {}
 }
 
 #pragma mark - Private methods
 
-- (void)changeAlphaOfAllElements
+- (NSString *)convertTempForStyleFromSetting:(NSString *)temp {
+    NSInteger temperature = [temp integerValue];
+    if ([WFGlobalDataManager sharedManager].fahrenheit && temperature) {
+      temperature = lroundf(temperature*1.8 + 32);
+        return [NSString stringWithFormat:@"%d", temperature];
+    } else {
+        return temp;
+    }
+}
+
+- (void)changeAlphaOfAllElementsTo:(CGFloat)alpha
 {
-    self.cityLabel.alpha = 1.0;
-    self.weatherDescriptionLabel.alpha = 1.0;
-    self.temperatureLabel.alpha = 1.0;
-    self.nightTemperatureLabel.alpha = 1.0;
-    self.dateLabel.alpha = 1.0;
-    self.addCityButton.alpha = 1.0;
-    self.cityListButton.alpha = 1.0;
+    self.cityLabel.alpha = alpha;
+    self.weatherDescriptionLabel.alpha = alpha;
+    self.temperatureView.alpha = self.temperatureView.hidden ? 0.0 : alpha;
+    self.decriptionView.alpha = self.decriptionView.hidden ? 0.0 : alpha;
+    self.dateLabel.alpha = alpha;
+    self.addCityButton.alpha = alpha;
+    self.cityListButton.alpha = alpha;
     
     for (WFDayForecastView *view in self.dayForecastView) {
-        view.dateLabel.alpha = 1.0;
-        view.weatherImageView.alpha = 1.0;
-        view.temperatureLabel.alpha = 1.0;
+        view.dateLabel.alpha = alpha;
+        view.weatherImageView.alpha = alpha;
+        view.temperatureLabel.alpha = alpha;
     }
 }
 
@@ -112,27 +151,30 @@
     
     self.weatherDescriptionLabel.text = forecast.weatherType;
     if (forecast.temp_C) {
-        self.temperatureLabel.text = [forecast.temp_C stringByAppendingString:@"°"];
+        self.temperatureLabel.text = [[self convertTempForStyleFromSetting:forecast.temp_C] stringByAppendingString:@"°"];
         self.nightTemperatureLabel.text = @"";
         
         NSString *dateString = [[WFGlobalDataManager sharedManager].dateToStringFormatter stringFromDate:[NSDate date]];
         
         self.dateLabel.text = dateString;
     } else {
-        self.temperatureLabel.text = [forecast.tempMaxC stringByAppendingString:@"°"];
-        self.nightTemperatureLabel.text = forecast.tempMinC;
+        self.temperatureLabel.text = [[self convertTempForStyleFromSetting:forecast.tempMaxC] stringByAppendingString:@"°"];
+        self.nightTemperatureLabel.text = [self convertTempForStyleFromSetting:forecast.tempMinC];
         
         NSDate *resDate = [[WFGlobalDataManager sharedManager].stringToDateFormatter dateFromString:forecast.date];
-        
         NSString *dateString = [[WFGlobalDataManager sharedManager].dateToStringFormatter stringFromDate:resDate];
-        
         self.dateLabel.text = dateString;
     }
+    self.humidityLabel.text = forecast.humidity;
+    self.pressureLabel.text = forecast.pressure;
+    self.precipMMLabel.text = forecast.precipMM;
+    self.windLabel.text = [NSString stringWithFormat:@"%@ kmph %@", forecast.windspeedKmph, forecast.winddir16Point];
     
     NSUInteger counter = 0;
     for (WFDayForecastView *view in self.dayForecastView) {
         WeatherForecast *subForecast = self.city.weatherForecast[counter];
-        view.weatherImageView.image = [[UIImage imageNamed:subForecast.weatherCode] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        NSString *imageName = self.currentForecast != counter ? subForecast.weatherCode : [subForecast.weatherCode stringByAppendingString:@"_highlighted"];
+        view.weatherImageView.image = [[UIImage imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         if (!subForecast.temp_C) {
             NSDate *resDate = [[WFGlobalDataManager sharedManager].stringToDateFormatter dateFromString:subForecast.date];
             
@@ -141,8 +183,8 @@
             
             view.dateLabel.text = [NSString stringWithFormat:@"%d",day];
             
-            NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:subForecast.tempMaxC];
-            NSMutableAttributedString * subString = [[NSMutableAttributedString alloc] initWithString:[@" " stringByAppendingString:subForecast.tempMaxC]];
+            NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:[self convertTempForStyleFromSetting:subForecast.tempMaxC]];
+            NSMutableAttributedString * subString = [[NSMutableAttributedString alloc] initWithString:[@" " stringByAppendingString:[self convertTempForStyleFromSetting:subForecast.tempMinC]]];
             [subString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:1.0 alpha:0.6] range:NSMakeRange(0, subString.length)];
             [attrStr appendAttributedString:subString];
             
@@ -150,18 +192,18 @@
 
         } else {
             view.dateLabel.text = @"Now";
-            view.temperatureLabel.text = subForecast.temp_C;
+            view.temperatureLabel.text = [self convertTempForStyleFromSetting:subForecast.temp_C];
         }
         
         ++counter;
     }
-    
+    __weak typeof(self)weakSelf = self;
     if (animation) {
-        [UIView animateWithDuration:0.25 animations:^{
-            [self changeAlphaOfAllElements];
+        [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+            [weakSelf changeAlphaOfAllElementsTo:1.0];
         }];
     } else {
-        [self changeAlphaOfAllElements];
+        [self changeAlphaOfAllElementsTo:1.0];
     }
 }
 
@@ -175,6 +217,40 @@
         [self.pageViewController showViewControllerAtIndex:([WFGlobalDataManager sharedManager].cityList.count + 1) fromIndex:self.pageIndex completion:NULL];
 }
 
+#pragma mark - Gesture recognizer
+
+- (IBAction)temperatureViewGestureRecognizerDidFire:(UITapGestureRecognizer *)sender {
+    self.temperatureView.hidden = !self.temperatureView.hidden;
+    self.decriptionView.hidden = !self.decriptionView.hidden;
+    __weak typeof(self)weakSelf = self;
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        [weakSelf changeAlphaOfAllElementsTo:1.0];
+    }];
+}
+
+- (void)weatherForecastViewGestureRecognizerDidFire:(UITapGestureRecognizer *)sender {
+    NSUInteger index = sender.view.tag;
+    
+    self.currentForecast = index;
+    __weak typeof(self)weakSelf = self;
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+        [weakSelf changeAlphaOfAllElementsTo:0.0];
+    } completion:^(BOOL finished) {
+        [weakSelf displayCityDataWithAlphaAnimation:YES];
+    }];
+}
+
+#pragma mark - Observer
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if ([keyPath isEqualToString:@"fahrenheit"]) {
+        [self displayCityDataWithAlphaAnimation:NO];
+    }
+}
 
 /*
 #pragma mark - Navigation

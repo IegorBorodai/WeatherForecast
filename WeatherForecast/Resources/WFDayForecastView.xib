@@ -58,6 +58,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="t7J-VT-LKj" firstAttribute="top" secondItem="SD9-u2-E4a" secondAttribute="top" constant="2" id="5ES-Y2-R0e"/>
                 <constraint firstAttribute="centerY" secondItem="4oZ-it-ZO2" secondAttribute="centerY" id="B6q-8X-8gx"/>

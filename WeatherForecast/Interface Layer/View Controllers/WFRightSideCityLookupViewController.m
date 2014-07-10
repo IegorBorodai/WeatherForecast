@@ -43,6 +43,8 @@
 {
     [super viewDidLoad];
     
+    [self.searchActivityIndicator stopAnimating];
+    
     self.cityList = @[];
     self.processCount = 0;
     
@@ -53,7 +55,7 @@
         }
     }
     if (!hasCurrentLocation) {
-        [self.searchActivityIndicator stopAnimating];
+        [self startActivityIndicator];
         self.locationManager = [CLLocationManager new];
         self.locationManager.delegate = self;
         self.locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -200,6 +202,11 @@
 
 #pragma mark - CLLocationManagerDelegate
 
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    [self stopActivityIndicator];
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"didUpdateToLocation: %@", newLocation);
@@ -214,6 +221,7 @@
             if (placemark) {
                 [weakSelf getForecastForCity:placemark.locality fromCurrentLocation:YES];
             }
+            [self stopActivityIndicator];
         }];
     }
 }

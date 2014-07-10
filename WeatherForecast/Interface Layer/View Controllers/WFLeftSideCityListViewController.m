@@ -10,6 +10,8 @@
 #import "WFGlobalDataManager.h"
 
 @interface WFLeftSideCityListViewController () <UITableViewDataSource, UITabBarControllerDelegate, SWTableViewCellDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *fahrenheitButton;
+@property (weak, nonatomic) IBOutlet UIButton *celsiumButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -22,6 +24,11 @@
 {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0);
+    [self convertButtonImagesToTemplate:self.fahrenheitButton];
+    [self convertButtonImagesToTemplate:self.celsiumButton];
+    
+    [self updateButtonsSelectionStyle];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -29,6 +36,25 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private methods
+
+- (void)updateButtonsSelectionStyle {
+    self.fahrenheitButton.selected = [WFGlobalDataManager sharedManager].fahrenheit;
+    self.celsiumButton.selected = ![WFGlobalDataManager sharedManager].fahrenheit;
+}
+
+- (void)convertButtonImagesToTemplate:(UIButton *)button {
+    UIImage* image = [[button imageForState:UIControlStateNormal] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [button setImage:image forState:UIControlStateNormal];
+    
+    image = [[button imageForState:UIControlStateHighlighted] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [button setImage:image forState:UIControlStateHighlighted];
+    
+    image = [[button imageForState:UIControlStateSelected] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [button setImage:image forState:UIControlStateSelected];
+    
 }
 
 #pragma mark - Table View Delegate
@@ -75,6 +101,21 @@
     [city MR_deleteEntity];
     [[WFGlobalDataManager sharedManager].cityList removeObjectAtIndex:cell.tag];
     [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:cell.tag inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+
+#pragma mark - Button Actions
+
+
+- (IBAction)fahrenheitButtonDidRecieveTap:(id)sender {
+    [WFGlobalDataManager sharedManager].fahrenheit = NO;
+    [self updateButtonsSelectionStyle];
+}
+
+
+- (IBAction)celsiumButtonDidRecieveTap:(id)sender {
+    [WFGlobalDataManager sharedManager].fahrenheit = YES;
+    [self updateButtonsSelectionStyle];
 }
 
 @end
