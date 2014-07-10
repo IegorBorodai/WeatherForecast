@@ -164,7 +164,7 @@
         self.nightTemperatureLabel.text = [self convertTempForStyleFromSetting:forecast.tempMinC];
         
         NSDate *resDate = [[WFGlobalDataManager sharedManager].stringToDateFormatter dateFromString:forecast.date];
-        NSString *dateString = [[WFGlobalDataManager sharedManager].dateToStringFormatter stringFromDate:resDate];
+        NSString *dateString = [[WFGlobalDataManager sharedManager].dateToStringFormatterWithoutTime stringFromDate:resDate];
         self.dateLabel.text = dateString;
     }
     

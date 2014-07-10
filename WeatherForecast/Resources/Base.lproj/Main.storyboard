@@ -52,7 +52,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abd-st-9b7">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="abd-st-9b7">
                                 <rect key="frame" x="20" y="122" width="61" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
@@ -351,6 +351,7 @@
                             <constraint firstItem="Fm7-Hf-7W9" firstAttribute="height" secondItem="d6R-jE-Xlf" secondAttribute="height" id="sJr-FL-Qit"/>
                             <constraint firstItem="k5t-9Z-hA2" firstAttribute="leading" secondItem="abd-st-9b7" secondAttribute="leading" id="sg2-d3-He6"/>
                             <constraint firstItem="tXe-59-c0U" firstAttribute="width" secondItem="ZDt-17-teK" secondAttribute="width" id="skO-5w-MOI"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="abd-st-9b7" secondAttribute="trailing" constant="20" id="tTa-u4-4ag"/>
                             <constraint firstItem="7Cr-be-cVN" firstAttribute="leading" secondItem="dFn-2x-Po1" secondAttribute="trailing" id="ufa-vB-dk0"/>
                             <constraint firstItem="abd-st-9b7" firstAttribute="top" secondItem="aTZ-1k-6jf" secondAttribute="bottom" constant="8" id="vS3-nS-b6B"/>
                             <constraint firstItem="aTZ-1k-6jf" firstAttribute="top" secondItem="VN8-D8-F28" secondAttribute="bottom" constant="70" id="vUt-wn-6Xf"/>

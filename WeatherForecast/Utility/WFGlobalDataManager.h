@@ -13,6 +13,7 @@
 
 @property (strong, atomic)                 NSMutableArray  *cityList;
 @property (strong, nonatomic, readonly)    NSDateFormatter *dateToStringFormatter;
+@property (strong, nonatomic, readonly)    NSDateFormatter *dateToStringFormatterWithoutTime;
 @property (strong, nonatomic, readonly)    NSDateFormatter *stringToDateFormatter;
 @property (strong, nonatomic, readonly)    NSCalendar      *calendar;
 

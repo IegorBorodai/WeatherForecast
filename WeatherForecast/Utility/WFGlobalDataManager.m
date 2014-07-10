@@ -11,6 +11,7 @@
 @interface WFGlobalDataManager ()
 
 @property (strong, nonatomic, readwrite) NSDateFormatter *dateToStringFormatter;
+@property (strong, nonatomic, readwrite) NSDateFormatter *dateToStringFormatterWithoutTime;
 @property (strong, nonatomic, readwrite) NSDateFormatter *stringToDateFormatter;
 @property (strong, nonatomic, readwrite) NSCalendar      *calendar;
 
@@ -41,6 +42,10 @@
         [self.dateToStringFormatter setTimeStyle:NSDateFormatterShortStyle];
         [self.dateToStringFormatter setDateStyle:NSDateFormatterShortStyle];
         [self.dateToStringFormatter setDoesRelativeDateFormatting:NO];
+
+        self.dateToStringFormatterWithoutTime = [NSDateFormatter new];
+        [self.dateToStringFormatterWithoutTime setDateStyle:NSDateFormatterShortStyle];
+        [self.dateToStringFormatterWithoutTime setDoesRelativeDateFormatting:NO];
         
         self.stringToDateFormatter = [[NSDateFormatter alloc] init];
         [self.stringToDateFormatter setDateFormat:@"yyyy'-'MM'-'dd"];
