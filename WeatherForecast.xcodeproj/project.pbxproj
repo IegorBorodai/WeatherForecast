@@ -13,7 +13,6 @@
 		E557A4A3196C852200537F37 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4A2196C852200537F37 /* Foundation.framework */; };
 		E557A4A5196C852200537F37 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4A4196C852200537F37 /* CoreGraphics.framework */; };
 		E557A4A7196C852200537F37 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E557A4A6196C852200537F37 /* UIKit.framework */; };
-		E557A501196C860500537F37 /* ACEphemeralObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4DA196C860500537F37 /* ACEphemeralObject.m */; };
 		E557A506196C860500537F37 /* NCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EA196C860500537F37 /* NCNetworkManager.m */; };
 		E557A507196C860500537F37 /* NCNetworkRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EC196C860500537F37 /* NCNetworkRequestSerializer.m */; };
 		E557A508196C860500537F37 /* NCNetworkResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E557A4EE196C860500537F37 /* NCNetworkResponseSerializer.m */; };
@@ -105,6 +104,7 @@
 		E576DB8B196D55E8002597CD /* UIWebView+SHWebViewBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = E576DB4C196D55E8002597CD /* UIWebView+SHWebViewBlocks.m */; };
 		E576DB8C196D55E8002597CD /* UIWebViewX.m in Sources */ = {isa = PBXBuildFile; fileRef = E576DB4E196D55E8002597CD /* UIWebViewX.m */; };
 		E57A3F06196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E57A3F05196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.m */; };
+		E57A3F0C196F47EA00EFC0C9 /* ACEphemeralObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E57A3F0B196F47EA00EFC0C9 /* ACEphemeralObject.m */; };
 		E5CC168C196C97F400CC06C6 /* WFAppearenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CC168B196C97F400CC06C6 /* WFAppearenceManager.m */; };
 		E5CC1690196C999E00CC06C6 /* WFPageDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CC168F196C999E00CC06C6 /* WFPageDataSourceViewController.m */; };
 		E5EEA13E196D6B8A003F7AEE /* WFGlobalDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EEA13D196D6B8A003F7AEE /* WFGlobalDataManager.m */; };
@@ -134,8 +134,6 @@
 		E557A4A4196C852200537F37 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E557A4A6196C852200537F37 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E557A4C1196C852200537F37 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		E557A4D9196C860500537F37 /* ACEphemeralObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEphemeralObject.h; sourceTree = "<group>"; };
-		E557A4DA196C860500537F37 /* ACEphemeralObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEphemeralObject.m; sourceTree = "<group>"; };
 		E557A4E9196C860500537F37 /* NCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetworkManager.h; sourceTree = "<group>"; };
 		E557A4EA196C860500537F37 /* NCNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNetworkManager.m; sourceTree = "<group>"; };
 		E557A4EB196C860500537F37 /* NCNetworkRequestSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetworkRequestSerializer.h; sourceTree = "<group>"; };
@@ -307,6 +305,8 @@
 		E576DB4E196D55E8002597CD /* UIWebViewX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIWebViewX.m; sourceTree = "<group>"; };
 		E57A3F04196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFUIWorkAroundKIFTests.h; sourceTree = "<group>"; };
 		E57A3F05196EFD0300EFC0C9 /* WFUIWorkAroundKIFTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFUIWorkAroundKIFTests.m; sourceTree = "<group>"; };
+		E57A3F0A196F47EA00EFC0C9 /* ACEphemeralObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEphemeralObject.h; sourceTree = "<group>"; };
+		E57A3F0B196F47EA00EFC0C9 /* ACEphemeralObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACEphemeralObject.m; sourceTree = "<group>"; };
 		E5CC168A196C97F400CC06C6 /* WFAppearenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFAppearenceManager.h; sourceTree = "<group>"; };
 		E5CC168B196C97F400CC06C6 /* WFAppearenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFAppearenceManager.m; sourceTree = "<group>"; };
 		E5CC168E196C999E00CC06C6 /* WFPageDataSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFPageDataSourceViewController.h; sourceTree = "<group>"; };
@@ -436,8 +436,6 @@
 		E557A4D8196C860500537F37 /* CoreData Layer */ = {
 			isa = PBXGroup;
 			children = (
-				E557A4D9196C860500537F37 /* ACEphemeralObject.h */,
-				E557A4DA196C860500537F37 /* ACEphemeralObject.m */,
 				E5754D6F196DAAB400E41359 /* City.h */,
 				E5754D70196DAAB400E41359 /* City.m */,
 				E53FA12F196D3D7D0083173F /* Model.xcdatamodeld */,
@@ -541,6 +539,8 @@
 		E557A4FD196C860500537F37 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				E57A3F0A196F47EA00EFC0C9 /* ACEphemeralObject.h */,
+				E57A3F0B196F47EA00EFC0C9 /* ACEphemeralObject.m */,
 				E5EEA147196D8757003F7AEE /* PHGraphObject.h */,
 				E5EEA148196D8757003F7AEE /* PHGraphObject.m */,
 				E557A4FE196C860500537F37 /* PHClassTypeConvertor.h */,
@@ -1080,6 +1080,7 @@
 				E576DB78196D55E8002597CD /* UIGestureRecognizer+SHGestureRecognizerBlocks.m in Sources */,
 				E576DB61196D55E8002597CD /* NSObject+MTKObserving.m in Sources */,
 				E576DB74196D55E8002597CD /* UIColor+Modify.m in Sources */,
+				E57A3F0C196F47EA00EFC0C9 /* ACEphemeralObject.m in Sources */,
 				E576DB54196D55E8002597CD /* NSDate+DateTime.m in Sources */,
 				E557A50D196C860500537F37 /* main.m in Sources */,
 				E576DB71196D55E8002597CD /* UIBarButtonItem+SHBarButtonItemBlocks.m in Sources */,
@@ -1111,7 +1112,6 @@
 				E5754D78196DC15B00E41359 /* UILabel+CustomFont.m in Sources */,
 				E576DB86196D55E8002597CD /* UIView+AnimationExtensions.m in Sources */,
 				E576DB83196D55E8002597CD /* UITabBarControllerX.m in Sources */,
-				E557A501196C860500537F37 /* ACEphemeralObject.m in Sources */,
 				E576DB50196D55E8002597CD /* MKMapViewX.m in Sources */,
 				E576DB6A196D55E8002597CD /* NSURLX.m in Sources */,
 				E576DB53196D55E8002597CD /* NSDate+CupertinoYankee.m in Sources */,
