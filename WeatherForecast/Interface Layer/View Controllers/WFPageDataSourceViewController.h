@@ -10,6 +10,6 @@
 
 @interface WFPageDataSourceViewController : UIViewController
 
-- (void)showViewControllerAtIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex completion:(void (^)(BOOL finished))completion;
+- (void)showViewControllerAtIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex animated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
 
 @end

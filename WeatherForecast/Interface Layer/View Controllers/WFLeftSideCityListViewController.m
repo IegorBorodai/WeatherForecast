@@ -61,7 +61,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.pageViewController showViewControllerAtIndex:(indexPath.row + 1) fromIndex:0 completion:^(BOOL finished) {
+    [self.pageViewController showViewControllerAtIndex:(indexPath.row + 1) fromIndex:0 animated:YES completion:^(BOOL finished) {
         for (NSIndexPath *indexPath in tableView.indexPathsForSelectedRows) {
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
@@ -79,13 +79,17 @@
 {
     static NSString *CellIdentifier = @"CitySearchTableViewCellIdentifier";
     SWTableViewCell *cell = (SWTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    NSMutableArray *buttons = [@[] mutableCopy];
-    [buttons sw_addUtilityButtonWithColor:[UIColor redColor] title:@"Delete"];
-    cell.rightUtilityButtons = buttons;
-    cell.delegate = self;
-    
     City *city = [WFGlobalDataManager sharedManager].cityList[indexPath.row];
+    
+    if (![city.isCurrentLocation boolValue]) {
+        NSMutableArray *buttons = [@[] mutableCopy];
+        [buttons sw_addUtilityButtonWithColor:[UIColor redColor] title:@"Delete"];
+        cell.rightUtilityButtons = buttons;
+        cell.delegate = self;
+    } else {
+        cell.rightUtilityButtons = nil;
+        cell.delegate = nil;
+    }
     
     cell.textLabel.text = city.name;
     cell.tag = indexPath.row;
@@ -101,6 +105,13 @@
     [city MR_deleteEntity];
     [[WFGlobalDataManager sharedManager].cityList removeObjectAtIndex:cell.tag];
     [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:cell.tag inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
+    if ([WFGlobalDataManager sharedManager].cityList.count > 0) {
+        [self.pageViewController showViewControllerAtIndex:0 fromIndex:0 animated:NO completion:NULL]; // PageVC worearound for data source updating
+    } else {
+        [self.pageViewController showViewControllerAtIndex:1 fromIndex:0 animated:YES completion:NULL];
+    }
+
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveOnlySelfWithCompletion:NULL];
 }
 
 

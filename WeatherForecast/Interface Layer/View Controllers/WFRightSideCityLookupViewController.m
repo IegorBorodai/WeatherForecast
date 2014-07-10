@@ -63,11 +63,13 @@
         [self.locationManager startUpdatingLocation];
     }
     
+//    [self.searchTextField becomeFirstResponder];
+    
     // Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self.searchTextField becomeFirstResponder];
+//    [self.searchTextField becomeFirstResponder];
 }
 
 
@@ -110,13 +112,13 @@
     __weak typeof(self)weakSelf = self;
     if (!fromCurrentLocation) {
         [[WFGlobalDataManager sharedManager].cityList addObject:coreDataCity];
-        [self.pageViewController showViewControllerAtIndex:[WFGlobalDataManager sharedManager].cityList.count fromIndex:self.pageIndex completion:^(BOOL finished) {
+        [self.pageViewController showViewControllerAtIndex:[WFGlobalDataManager sharedManager].cityList.count fromIndex:self.pageIndex animated:YES completion:^(BOOL finished) {
             [weakSelf clearViewControllerData];
         }];
     } else {
         coreDataCity.isCurrentLocation = @(YES);
         [[WFGlobalDataManager sharedManager].cityList insertObject:coreDataCity atIndex:0];
-        [self.pageViewController showViewControllerAtIndex:1 fromIndex:self.pageIndex completion:^(BOOL finished) {
+        [self.pageViewController showViewControllerAtIndex:1 fromIndex:self.pageIndex animated:YES completion:^(BOOL finished) {
             [weakSelf clearViewControllerData];
         }];
     }
@@ -136,13 +138,17 @@
         self.fromPageIndex = self.pageIndex - 1;
     }
     __weak typeof(self)weakSelf = self;
-    [self.pageViewController showViewControllerAtIndex:self.fromPageIndex fromIndex:self.pageIndex completion:^(BOOL finished) {
+    [self.pageViewController showViewControllerAtIndex:self.fromPageIndex fromIndex:self.pageIndex animated:YES completion:^(BOOL finished) {
         [weakSelf clearViewControllerData];
     }];
 }
 
 
 #pragma mark - Text Field Delegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    return YES;
+}
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {

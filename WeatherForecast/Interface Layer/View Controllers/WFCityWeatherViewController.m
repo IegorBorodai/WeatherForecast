@@ -210,11 +210,11 @@
 #pragma mark - Button Actions
 
 - (IBAction)cityListButtonDidRecieveTap:(id)sender {
-    [self.pageViewController showViewControllerAtIndex:0 fromIndex:self.pageIndex completion:NULL];
+    [self.pageViewController showViewControllerAtIndex:0 fromIndex:self.pageIndex animated:YES completion:NULL];
 }
 
 - (IBAction)addNewCityButtonDidRecieveTap:(id)sender {
-        [self.pageViewController showViewControllerAtIndex:([WFGlobalDataManager sharedManager].cityList.count + 1) fromIndex:self.pageIndex completion:NULL];
+        [self.pageViewController showViewControllerAtIndex:([WFGlobalDataManager sharedManager].cityList.count + 1) fromIndex:self.pageIndex animated:YES completion:NULL];
 }
 
 #pragma mark - Gesture recognizer

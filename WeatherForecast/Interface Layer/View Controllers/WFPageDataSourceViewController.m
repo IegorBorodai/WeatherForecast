@@ -14,7 +14,7 @@
 #define LEFT_VC_WITH_CITY_LIST 0
 #define LEFT_VC_IN_STACK 1
 
-@interface WFPageDataSourceViewController () <UIPageViewControllerDataSource>
+@interface WFPageDataSourceViewController () <UIPageViewControllerDataSource, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) UIPageViewController            *pageViewController;
 @property (strong, nonatomic) WFPageBaseContentViewController *currentViewController;
@@ -31,6 +31,11 @@
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WFPageViewController"];
     self.pageViewController.dataSource = self;
     
+    for (UIGestureRecognizer * gesRecog in self.pageViewController.gestureRecognizers)
+    {
+        gesRecog.delegate = self;
+    }
+    
     WFPageBaseContentViewController *startingViewController = [self viewControllerAtIndex:1];
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -41,10 +46,6 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    
-//    [self observeObject:[WFGlobalDataManager sharedManager] property:@"cityList" withBlock:^(__weak id self, __weak id object, id old, id new) {
-//    
-//    }];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -53,7 +54,7 @@
 
 #pragma mark - Public methods
 
-- (void)showViewControllerAtIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex completion:(void (^)(BOOL finished))completion
+- (void)showViewControllerAtIndex:(NSUInteger)index fromIndex:(NSUInteger)fromIndex animated:(BOOL)animated completion:(void (^)(BOOL finished))completion
 {
     UIPageViewControllerNavigationDirection direction = fromIndex > index ? UIPageViewControllerNavigationDirectionReverse : UIPageViewControllerNavigationDirectionForward;
     
@@ -65,14 +66,16 @@
     __weak UIPageViewController* weakPageVC = self.pageViewController;
     [self.pageViewController setViewControllers:viewControllers
                   direction:direction
-                   animated:YES completion:^(BOOL finished) {
-                       UIPageViewController* strongPageVC = weakPageVC;
-                       if (!strongPageVC) return;
-                       dispatch_async(dispatch_get_main_queue(), ^{
-                           [strongPageVC setViewControllers:viewControllers
-                                          direction:direction
-                                           animated:NO completion:nil];
-                       });
+                   animated:animated completion:^(BOOL finished) {
+                       if (animated) {
+                           UIPageViewController* strongPageVC = weakPageVC;
+                           if (!strongPageVC) return;
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               [strongPageVC setViewControllers:viewControllers
+                                                      direction:direction
+                                                       animated:NO completion:nil];
+                           });
+                       }
                    }];
 }
 
@@ -84,9 +87,11 @@
 //        return nil;
 //    }
     
-    WFPageBaseContentViewController *viewController;
+    WFPageBaseContentViewController *viewController = nil;
     if (LEFT_VC_WITH_CITY_LIST == index) {
-        viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WFLeftSideCityListViewController"];
+        if ([WFGlobalDataManager sharedManager].cityList.count > 0) {
+            viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WFLeftSideCityListViewController"];
+        }
     } else if (([WFGlobalDataManager sharedManager].cityList.count + LEFT_VC_IN_STACK) == index) {
         viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WFRightSideCityLookupViewController"];
     } else {
@@ -137,4 +142,16 @@
 //{
 //    return 0;
 //}
+
+
+#pragma mark - Gesture recognizer
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if (touch.view != self.pageViewController.view)
+    {
+        return NO;
+    }
+    return YES;
+}
 @end
