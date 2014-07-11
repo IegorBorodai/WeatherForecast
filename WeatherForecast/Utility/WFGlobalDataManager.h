@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Iegor Borodai. All rights reserved.
 //
 
+#define LEFT_VC_COUNT_IN_STACK 1
+
 @import Foundation;
 #import "City.h"
 

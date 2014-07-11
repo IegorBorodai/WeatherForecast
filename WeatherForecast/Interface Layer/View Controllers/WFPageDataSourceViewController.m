@@ -12,7 +12,6 @@
 #import "CategoriesExtension.h"
 
 #define LEFT_VC_WITH_CITY_LIST 0
-#define LEFT_VC_IN_STACK 1
 
 @interface WFPageDataSourceViewController () <UIPageViewControllerDataSource, UIGestureRecognizerDelegate>
 
@@ -26,7 +25,6 @@
 {
     [super viewDidLoad];
     
-    // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WFPageViewController"];
     self.pageViewController.dataSource = self;
     
@@ -34,7 +32,6 @@
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    // Change the size of page view controller
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     
     [self addChildViewController:_pageViewController];
@@ -59,35 +56,27 @@
     NSArray *viewControllers = @[newViewController];
     
     __weak UIPageViewController* weakPageVC = self.pageViewController;
-    [self.pageViewController setViewControllers:viewControllers
-                  direction:direction
-                   animated:animated completion:^(BOOL finished) {
-                       if (animated) {
-                           UIPageViewController* strongPageVC = weakPageVC;
-                           if (!strongPageVC) return;
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               [strongPageVC setViewControllers:viewControllers
-                                                      direction:direction
-                                                       animated:NO completion:nil];
-                           });
-                       }
-                   }];
+    [self.pageViewController setViewControllers:viewControllers direction:direction animated:animated completion:^(BOOL finished) {
+        if (animated) {
+            UIPageViewController* strongPageVC = weakPageVC;
+            if (!strongPageVC) return;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongPageVC setViewControllers:viewControllers direction:direction animated:NO completion:nil];
+            });
+        }
+    }];
 }
 
 #pragma mark - Private methods
 
 - (WFPageBaseContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-//    if (index > [WFGlobalDataManager sharedManager].cityList.count) {
-//        return nil;
-//    }
-    
     WFPageBaseContentViewController *viewController = nil;
     if (LEFT_VC_WITH_CITY_LIST == index) {
         if ([WFGlobalDataManager sharedManager].cityList.count > 0) {
             viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WFLeftSideCityListViewController"];
         }
-    } else if (([WFGlobalDataManager sharedManager].cityList.count + LEFT_VC_IN_STACK) == index) {
+    } else if (([WFGlobalDataManager sharedManager].cityList.count + LEFT_VC_COUNT_IN_STACK) == index) {
         viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WFRightSideCityLookupViewController"];
     } else {
         viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WFCityWeatherViewController"];
@@ -109,7 +98,7 @@
         return nil;
     }
     
-    index--;
+    --index;
     return [self viewControllerAtIndex:index];
 }
 
@@ -121,37 +110,11 @@
         return nil;
     }
     
-    index++;
-    if (index > [WFGlobalDataManager sharedManager].cityList.count + LEFT_VC_IN_STACK) {
+    ++index;
+    if (index > [WFGlobalDataManager sharedManager].cityList.count + LEFT_VC_COUNT_IN_STACK) {
         return nil;
     }
     return [self viewControllerAtIndex:index];
 }
 
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
-{
-    return [[WFGlobalDataManager sharedManager].cityList count];
-}
-
-//- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-//{
-//    return 0;
-//}
-
-
-#pragma mark - Gesture recognizer
-//
-//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-//{
-//    return YES;
-//}
-//
-//-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-//{
-//    if (touch.view != self.pageViewController.view)
-//    {
-//        return NO;
-//    }
-//    return YES;
-//}
 @end

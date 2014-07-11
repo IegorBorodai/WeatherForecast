@@ -48,14 +48,6 @@
 
 @implementation WFCityWeatherViewController
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -64,42 +56,44 @@
     __weak typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
-    weakSelf.city = [WFGlobalDataManager sharedManager].cityList[weakSelf.pageIndex - 1];
-    
-    weakSelf.dayForecastView = [weakSelf.dayForecastView sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(WFDayForecastView* obj1, WFDayForecastView* obj2) {
-        if (obj1.tag > obj2.tag) {
-            return NSOrderedDescending;
-        } else {
-            return NSOrderedAscending;
+        weakSelf.city = [WFGlobalDataManager sharedManager].cityList[weakSelf.pageIndex - LEFT_VC_COUNT_IN_STACK];
+        
+        weakSelf.dayForecastView = [weakSelf.dayForecastView sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(WFDayForecastView* obj1, WFDayForecastView* obj2) {
+            if (obj1.tag > obj2.tag) {
+                return NSOrderedDescending;
+            } else {
+                return NSOrderedAscending;
+            }
+        }];
+        
+        for (WFDayForecastView *view in weakSelf.dayForecastView) {
+            UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(weatherForecastViewGestureRecognizerDidFire:)];
+            [view addGestureRecognizer:recognizer];
         }
-    }];
-    
-    for (WFDayForecastView *view in weakSelf.dayForecastView) {
-        UITapGestureRecognizer* recognizer = [[UITapGestureRecognizer alloc] initWithTarget:weakSelf action:@selector(weatherForecastViewGestureRecognizerDidFire:)];
-        [view addGestureRecognizer:recognizer];
-    }
-    if (![weakSelf.city.isComplete boolValue] || ([[NSDate date] compare: [NSDate dateWithTimeInterval:TWO_HOURS sinceDate:weakSelf.city.updatedOn]] == NSOrderedDescending)) {
-       weakSelf.weatherForecastTask = [NCNetworkClient getWeatherForecastForQuery:weakSelf.city.name successBlock:^(NSArray<WFWeatherForecastProtocol> *weatherForecast) {
-           for (NSDictionary<WFWeatherForecastProtocol> *dict in weatherForecast) {
-               WeatherForecast *forecast = (WeatherForecast *)[ACEphemeralObject convertInMemoryObjectToManaged:dict class:[WeatherForecast class]];
-               [weakSelf.city addWeatherForecastObject:forecast];
-           }
-           weakSelf.city.updatedOn = [NSDate date];
-           weakSelf.city.isComplete = @YES;
-           [WFGlobalDataManager sharedManager].cityList[weakSelf.pageIndex - 1] = weakSelf.city;
-           [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveOnlySelfWithCompletion:NULL];
-
-               dispatch_async(dispatch_get_main_queue(), ^(void) {
-                   [weakSelf displayCityDataWithAlphaAnimation:YES];
-               });
-       } failure:^(NSError *error, BOOL isCanceled) {
-           [[[UIAlertView alloc] initWithTitle:error.localizedDescription message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-       }];
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            [weakSelf displayCityDataWithAlphaAnimation:NO];
-        });
-    }
+        
+        if (![weakSelf.city.isComplete boolValue] || ([[NSDate date] compare: [NSDate dateWithTimeInterval:TWO_HOURS sinceDate:weakSelf.city.updatedOn]] == NSOrderedDescending)) {
+            weakSelf.weatherForecastTask = [NCNetworkClient getWeatherForecastForQuery:weakSelf.city.name successBlock:^(NSArray<WFWeatherForecastProtocol> *weatherForecast) {
+                for (NSDictionary<WFWeatherForecastProtocol> *dict in weatherForecast) {
+                    WeatherForecast *forecast = (WeatherForecast *)[ACEphemeralObject convertInMemoryObjectToManaged:dict class:[WeatherForecast class]];
+                    [weakSelf.city addWeatherForecastObject:forecast];
+                }
+                weakSelf.city.updatedOn = [NSDate date];
+                weakSelf.city.isComplete = @YES;
+                [WFGlobalDataManager sharedManager].cityList[weakSelf.pageIndex - LEFT_VC_COUNT_IN_STACK] = weakSelf.city;
+                [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveOnlySelfWithCompletion:NULL];
+                
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    [weakSelf displayCityDataWithAlphaAnimation:YES];
+                });
+                
+            } failure:^(NSError *error, BOOL isCanceled) {
+                [[[UIAlertView alloc] initWithTitle:error.localizedDescription message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }];
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                [weakSelf displayCityDataWithAlphaAnimation:NO];
+            });
+        }
     });
 }
 
@@ -123,7 +117,7 @@
     NSInteger temperature = [temp integerValue];
     if ([WFGlobalDataManager sharedManager].fahrenheit && temperature) {
       temperature = lroundf(temperature*1.8 + 32);
-        return [NSString stringWithFormat:@"%d", temperature];
+        return [NSString stringWithFormat:@"%ld", (long)temperature];
     } else {
         return temp;
     }
@@ -186,7 +180,7 @@
             NSDateComponents *components = [[WFGlobalDataManager sharedManager].calendar components:NSCalendarUnitDay fromDate:resDate];
             NSUInteger day = [components day];
             
-            view.dateLabel.text = [NSString stringWithFormat:@"%d",day];
+            view.dateLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)day];
             
             NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:[self convertTempForStyleFromSetting:subForecast.tempMaxC]];
             NSMutableAttributedString * subString = [[NSMutableAttributedString alloc] initWithString:[@" " stringByAppendingString:[self convertTempForStyleFromSetting:subForecast.tempMinC]]];
@@ -219,7 +213,7 @@
 }
 
 - (IBAction)addNewCityButtonDidRecieveTap:(id)sender {
-        [self.pageViewController showViewControllerAtIndex:([WFGlobalDataManager sharedManager].cityList.count + 1) fromIndex:self.pageIndex animated:YES completion:NULL];
+        [self.pageViewController showViewControllerAtIndex:([WFGlobalDataManager sharedManager].cityList.count + LEFT_VC_COUNT_IN_STACK) fromIndex:self.pageIndex animated:YES completion:NULL];
 }
 
 #pragma mark - Gesture recognizer
@@ -256,16 +250,5 @@
         [self displayCityDataWithAlphaAnimation:NO];
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

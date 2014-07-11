@@ -15,17 +15,16 @@
 - (id)init __AVAILABILITY_INTERNAL_UNAVAILABLE;
 - (id)new __AVAILABILITY_INTERNAL_UNAVAILABLE;
 
-// Public
+#pragma mark - Public
 + (void)createNetworkClientWithRootPath:(NSString*)baseURL specialFields:(NSDictionary *)specialFields;
 
-// Singletons
+#pragma mark - Sigleton methods
 + (NCNetworkManager *)networkClient;
 
-// Network status
+#pragma mark - Network status
 + (BOOL)checkReachabilityStatusWithError:(NSError* __autoreleasing*)error;
 
-//Requests
-
+#pragma mark - Requests
 + (NSURLSessionTask*)getCityNamesForQuery:(NSString*)query successBlock:(void (^)(NSArray *cityList))success
                                   failure:(void (^)(NSError *error, BOOL isCanceled))failure;
 

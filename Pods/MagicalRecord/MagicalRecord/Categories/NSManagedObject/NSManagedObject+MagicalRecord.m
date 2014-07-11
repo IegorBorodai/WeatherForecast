@@ -83,7 +83,9 @@ static NSUInteger defaultBatchSize = kMagicalRecordDefaultBatchSize;
 
 + (NSEntityDescription *) MR_entityDescriptionInContext:(NSManagedObjectContext *)context
 {
-    if ([self respondsToSelector:@selector(entityInManagedObjectContext:)]) 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    if ([self respondsToSelector:@selector(entityInManagedObjectContext:)])
     {
         NSEntityDescription *entity = [self performSelector:@selector(entityInManagedObjectContext:) withObject:context];
         return entity;
@@ -93,6 +95,7 @@ static NSUInteger defaultBatchSize = kMagicalRecordDefaultBatchSize;
         NSString *entityName = [self MR_entityName];
         return [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
     }
+#pragma clang diagnostic pop
 }
 
 + (NSEntityDescription *) MR_entityDescription
@@ -152,7 +155,9 @@ static NSUInteger defaultBatchSize = kMagicalRecordDefaultBatchSize;
 
 + (id) MR_createInContext:(NSManagedObjectContext *)context
 {
-    if ([self respondsToSelector:@selector(insertInManagedObjectContext:)]) 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    if ([self respondsToSelector:@selector(insertInManagedObjectContext:)])
     {
         id entity = [self performSelector:@selector(insertInManagedObjectContext:) withObject:context];
         return entity;
@@ -161,6 +166,7 @@ static NSUInteger defaultBatchSize = kMagicalRecordDefaultBatchSize;
     {
         return [NSEntityDescription insertNewObjectForEntityForName:[self MR_entityName] inManagedObjectContext:context];
     }
+#pragma clang diagnostic pop
 }
 
 + (id) MR_createEntity

@@ -28,7 +28,6 @@
     [super tearDown];
 }
 
-//- (void)testInternetConnection
 - (void)checkInternetConnection
 {
     XCTAssertTrue([NCNetworkClient checkReachabilityStatusWithError:nil], @"Internet connection must be online for other tests");

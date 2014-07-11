@@ -170,6 +170,8 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
 
 - (BOOL) MR_preImport:(id)objectData;
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     if ([self respondsToSelector:@selector(shouldImport:)])
     {
         BOOL shouldImport = (BOOL)[self performSelector:@selector(shouldImport:) withObject:objectData];
@@ -185,16 +187,20 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
     }
     MR_swapMethodsFromClass([objectData class], @selector(valueForUndefinedKey:), @selector(MR_valueForUndefinedKey:));
     return YES;
+#pragma clang diagnostic pop
 }
 
 - (BOOL) MR_postImport:(id)objectData;
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     MR_swapMethodsFromClass([objectData class], @selector(valueForUndefinedKey:), @selector(MR_valueForUndefinedKey:));
     if ([self respondsToSelector:@selector(didImport:)])
     {
         [self performSelector:@selector(didImport:) withObject:objectData];
     }
     return YES;
+#pragma clang diagnostic pop
 }
 
 - (BOOL) MR_performDataImportFromObject:(id)objectData relationshipBlock:(void(^)(NSRelationshipDescription*, id))relationshipBlock;

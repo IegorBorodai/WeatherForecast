@@ -10,17 +10,17 @@
 #import "WFGlobalDataManager.h"
 
 @interface WFLeftSideCityListViewController () <UITableViewDataSource, UITabBarControllerDelegate, SWTableViewCellDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *fahrenheitButton;
-@property (weak, nonatomic) IBOutlet UIButton *celsiumButton;
+
+@property (weak, nonatomic) IBOutlet UIButton    *fahrenheitButton;
+@property (weak, nonatomic) IBOutlet UIButton    *celsiumButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (weak, nonatomic) UIScrollView      *pageViewScrollView;
+@property (weak, nonatomic) UIScrollView         *pageViewScrollView;
 
 @end
 
 @implementation WFLeftSideCityListViewController
-
 
 - (void)viewDidLoad
 {
@@ -33,14 +33,11 @@
     [self convertButtonImagesToTemplate:self.celsiumButton];
     
     [self updateButtonsSelectionStyle];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -72,7 +69,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.pageViewController showViewControllerAtIndex:(indexPath.row + 1) fromIndex:0 animated:YES completion:^(BOOL finished) {
+    [self.pageViewController showViewControllerAtIndex:(indexPath.row + LEFT_VC_COUNT_IN_STACK) fromIndex:self.pageIndex animated:YES completion:^(BOOL finished) {
         for (NSIndexPath *indexPath in tableView.indexPathsForSelectedRows) {
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
@@ -136,7 +133,7 @@
     [[WFGlobalDataManager sharedManager].cityList removeObjectAtIndex:cell.tag];
     [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:cell.tag inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
     if ([WFGlobalDataManager sharedManager].cityList.count > 0) {
-        [self.pageViewController showViewControllerAtIndex:0 fromIndex:0 animated:NO completion:NULL]; // PageVC worearound for data source updating
+        [self.pageViewController showViewControllerAtIndex:0 fromIndex:0 animated:NO completion:NULL]; // PageVC workaround for data source updating
     } else {
         [self.pageViewController showViewControllerAtIndex:1 fromIndex:0 animated:YES completion:NULL];
     }

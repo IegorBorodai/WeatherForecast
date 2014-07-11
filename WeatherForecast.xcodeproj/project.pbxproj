@@ -448,18 +448,10 @@
 		E557A4E1196C860500537F37 /* Interface Layer */ = {
 			isa = PBXGroup;
 			children = (
-				E557A4E2196C860500537F37 /* Cells */,
 				E557A4E3196C860500537F37 /* View Controllers */,
 				E557A4E6196C860500537F37 /* Views */,
 			);
 			path = "Interface Layer";
-			sourceTree = "<group>";
-		};
-		E557A4E2196C860500537F37 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		E557A4E3196C860500537F37 /* View Controllers */ = {

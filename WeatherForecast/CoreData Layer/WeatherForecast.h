@@ -24,6 +24,6 @@
 @property (nonatomic, retain) NSString * tempMaxC;
 @property (nonatomic, retain) NSString * tempMinC;
 @property (nonatomic, retain) NSString * weatherType;
-@property (nonatomic, retain) NSArray * weatherDesc;
+@property (nonatomic, retain) NSArray  * weatherDesc;
 
 @end

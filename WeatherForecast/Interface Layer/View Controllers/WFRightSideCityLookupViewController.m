@@ -30,15 +30,6 @@
 
 @implementation WFRightSideCityLookupViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -69,11 +60,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0000000000000001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0000000000000001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ //workaround with keyboard and page viewconntroller iOS 6+
         [self.searchTextField becomeFirstResponder];
     });
 }
-
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -81,14 +71,9 @@
     [self.searchTextField resignFirstResponder];
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Private methods
@@ -174,7 +159,7 @@
         [weakSelf.tableView reloadData];
         [weakSelf stopActivityIndicator];
     } failure:^(NSError *error, BOOL isCanceled) {
-//        if (!isCanceled && error) {
+//        if (!isCanceled && error) {  //no need of error processing
 //        }
         [weakSelf stopActivityIndicator];
     }];
@@ -186,7 +171,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString* cityName = self.cityList[indexPath.row];
-    [self getForecastForCity:cityName fromCurrentLocation:NO];
+    NSInteger index = [[WFGlobalDataManager sharedManager].cityList indexOfObjectPassingTest:^BOOL(City *city, NSUInteger idx, BOOL *stop) {
+        if ([city.name isEqualToString:cityName]) {
+            *stop = YES;
+            return YES;
+        }
+        return NO;
+    }];
+    if (NSNotFound == index) {
+        [self getForecastForCity:cityName fromCurrentLocation:NO];
+    } else {
+        __weak typeof(self)weakSelf = self;
+        [self.pageViewController showViewControllerAtIndex:(index + LEFT_VC_COUNT_IN_STACK) fromIndex:self.pageIndex animated:YES completion:^(BOOL finished) {
+            [weakSelf clearViewControllerData];
+        }];
+    }
 }
 
 #pragma mark - Table View Data Source
@@ -201,7 +200,6 @@
     static NSString *CellIdentifier = @"CitySearchTableViewCellIdentifier";
     UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
@@ -230,8 +228,6 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"didUpdateToLocation: %@", newLocation);
-    //    CLLocation *currentLocation = newLocation;
     if (!self.isLocationProcessing) {
         self.isLocationProcessing = YES;
         [self.locationManager stopUpdatingLocation];
@@ -242,19 +238,9 @@
             if (placemark) {
                 [weakSelf getForecastForCity:placemark.locality fromCurrentLocation:YES];
             }
-            [self stopActivityIndicator];
+            [weakSelf stopActivityIndicator];
         }];
     }
 }
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

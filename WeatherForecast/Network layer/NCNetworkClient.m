@@ -10,7 +10,7 @@
 #import "WeatherForecast.h"
 #import "PHGraphObject.h"
 
-static dispatch_once_t networkToken;
+static dispatch_once_t  networkToken;
 static NCNetworkManager *sharedNetworkClient = nil;
 
 @implementation NCNetworkClient
@@ -40,6 +40,25 @@ static NCNetworkManager *sharedNetworkClient = nil;
     });
 }
 
+#pragma mark - Private methods
+
++ (NSError *)checkErrorBlockInJsonDict:(NSDictionary *)jsonDict
+{
+
+        if (jsonDict[@"error"] && [jsonDict[@"error"] isKindOfClass:[NSArray class]]) {
+            NSArray* errors = jsonDict[@"error"];
+            NSDictionary* error = [errors firstObject];
+            if (error && [error isKindOfClass:[NSDictionary class]]) {
+                NSString* msg = error[@"msg"];
+                if (msg && [msg isKindOfClass:[NSString class]]) {
+                    NSError* error = [NSError errorWithDomain:@"Bad request" code:400 userInfo:@{NSLocalizedDescriptionKey: msg}];
+                    return error;
+                }
+            }
+        }
+        return nil;
+    }
+
 
 #pragma mark - Requests
 
@@ -50,22 +69,15 @@ static NCNetworkManager *sharedNetworkClient = nil;
         if (success && responseObject) {
             NSMutableArray *cityList = [@[] mutableCopy];
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                if (responseObject[@"data"] && [responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+                if (responseObject[@"data"] && [responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {  // failure
                     NSDictionary *data = responseObject[@"data"];
-                    if (data[@"error"] && [data[@"error"] isKindOfClass:[NSArray class]]) { // failure
-                        NSArray* errors = data[@"error"];
-                        NSDictionary* error = [errors firstObject];
-                        if (error && [error isKindOfClass:[NSDictionary class]]) {
-                            NSString* msg = error[@"msg"];
-                            if (msg && [msg isKindOfClass:[NSString class]]) {
-                                NSError* error = [NSError errorWithDomain:@"Bad request" code:400 userInfo:@{NSLocalizedDescriptionKey: msg}];
-                                failure(error, NO);
-                                return;
-                            }
-                        }
+                    NSError* error = [NCNetworkClient checkErrorBlockInJsonDict:data];
+                    if (error) {
+                        failure(error, NO);
+                        return ;
                     }
                 }
-
+                
                 if (responseObject[@"search_api"] && [responseObject[@"search_api"] isKindOfClass:[NSDictionary class]]) {
                     NSDictionary *searchApi = responseObject[@"search_api"];
                     if (searchApi[@"result"] && [searchApi[@"result"] isKindOfClass:[NSArray class]]) {
@@ -103,17 +115,10 @@ static NCNetworkManager *sharedNetworkClient = nil;
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if (responseObject[@"data"] && [responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
                     NSDictionary *data = responseObject[@"data"];
-                    if (data[@"error"] && [data[@"error"] isKindOfClass:[NSArray class]]) { // failure
-                        NSArray* errors = data[@"error"];
-                        NSDictionary* error = [errors firstObject];
-                        if (error && [error isKindOfClass:[NSDictionary class]]) {
-                            NSString* msg = error[@"msg"];
-                            if (msg && [msg isKindOfClass:[NSString class]]) {
-                                NSError* error = [NSError errorWithDomain:@"Bad request" code:400 userInfo:@{NSLocalizedDescriptionKey: msg}];
-                                failure(error, NO);
-                                return;
-                            }
-                        }
+                    NSError* error = [NCNetworkClient checkErrorBlockInJsonDict:data];
+                    if (error) {
+                        failure(error, NO);
+                        return ;
                     }
                     
                     if (data[@"current_condition"] && [data[@"current_condition"] isKindOfClass:[NSArray class]]) {

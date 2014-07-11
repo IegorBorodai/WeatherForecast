@@ -16,6 +16,7 @@
 - (void)testWorkAround
 {
     if([[[UIApplication sharedApplication] keyWindow] accessibilityElementWithLabel:@"City Weather Image"] != nil) {
+        [tester swipeViewWithAccessibilityLabel:@"City Weather Image" inDirection:KIFSwipeDirectionRight];
         [self removeElementsFromList];
     }
     
@@ -52,16 +53,18 @@
     [tester swipeViewWithAccessibilityLabel:@"Section 0 Row 0" inDirection:KIFSwipeDirectionLeft];
     [tester tapViewWithAccessibilityLabel:@"Delete"];
     
+    [tester waitForViewWithAccessibilityLabel:@"Search Field"];
+    
 }
 
 
 - (void)removeElementsFromList
 {
-    [tester swipeViewWithAccessibilityLabel:@"City Weather Image" inDirection:KIFSwipeDirectionRight];
     UITableView *tableView = (UITableView *)[tester waitForViewWithAccessibilityLabel:@"City List"];
     NSInteger originalCityCount = [tableView numberOfRowsInSection:0];
     [tester swipeViewWithAccessibilityLabel:@"Section 0 Row 0" inDirection:KIFSwipeDirectionLeft];
     [tester tapViewWithAccessibilityLabel:@"Delete"];
+    [tester waitForTimeInterval:1.0];
     if (originalCityCount > 1) {
         [self removeElementsFromList];
     }
