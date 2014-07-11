@@ -243,6 +243,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uag-Xw-ITv">
                                 <rect key="frame" x="280" y="30" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Add City Button"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Z7P-ZQ-Qbe"/>
                                     <constraint firstAttribute="height" constant="30" id="ZDW-Io-NXX"/>

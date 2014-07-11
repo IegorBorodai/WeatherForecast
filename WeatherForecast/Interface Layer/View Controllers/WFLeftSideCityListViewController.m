@@ -92,11 +92,10 @@
     if (![city.isCurrentLocation boolValue]) {
         NSMutableArray *buttons = [@[] mutableCopy];
         [buttons sw_addUtilityButtonWithColor:[UIColor redColor] title:@"Delete"];
-#ifdef DEBUG
+
         UIButton *deleteButton = [buttons firstObject];
         [deleteButton setAccessibilityLabel:@"Delete"];
         [deleteButton setIsAccessibilityElement:YES];
-#endif
         
         cell.rightUtilityButtons = buttons;
         cell.delegate = self;
@@ -111,6 +110,7 @@
         frame.size.height = cell.contentView.frame.size.height;
         frame.size.width = frame.size.height;
         cell.accessoryView = accessoryView;
+        [cell.accessoryView setAccessibilityLabel:@"Location Mark"];
     }
     
     cell.textLabel.text = city.name;
@@ -118,7 +118,6 @@
     
 #ifdef DEBUG
     [cell setAccessibilityLabel:[NSString stringWithFormat:@"Section %ld Row %ld", (long)indexPath.section, (long)indexPath.row]];
-    [cell setAccessibilityIdentifier:[NSString stringWithFormat:@"Section %ld Row %ld", (long)indexPath.section, (long)indexPath.row]];
 #endif
     
     return cell;
