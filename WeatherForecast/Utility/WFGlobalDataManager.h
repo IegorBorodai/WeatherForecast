@@ -23,6 +23,4 @@
 
 + (WFGlobalDataManager *)sharedManager;
 
-- (NSDateFormatter *)dateToStringFormatter;
-
 @end

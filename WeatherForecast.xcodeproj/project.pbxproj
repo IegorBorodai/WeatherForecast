@@ -389,7 +389,6 @@
 				E557A4F1196C860500537F37 /* Resources */,
 				E557A4F7196C860500537F37 /* Supporting Files */,
 				E557A4FD196C860500537F37 /* Utility */,
-				E557A500196C860500537F37 /* Vendor */,
 			);
 			path = WeatherForecast;
 			sourceTree = "<group>";
@@ -545,13 +544,6 @@
 				E5EEA14B196D8814003F7AEE /* WFWeatherForecastDescriptionProtocol.h */,
 			);
 			path = Utility;
-			sourceTree = "<group>";
-		};
-		E557A500196C860500537F37 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Vendor;
 			sourceTree = "<group>";
 		};
 		E57117DE196EE6BB00EC1698 /* WeatherForecast Tests */ = {
